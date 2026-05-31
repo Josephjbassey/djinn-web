@@ -1,0 +1,23 @@
+{
+  "name": "button",
+  "category": "Buttons",
+  "description": "A versatile button component with multiple variants.",
+  "variants": [
+    "primary",
+    "secondary",
+    "ghost",
+    "destructive",
+    "outline"
+  ],
+  "dependencies": ["tailwindcss"],
+  "files": [
+    {
+      "name": "button.html",
+      "target": "components/ui/button.html"
+    },
+    {
+      "name": "button.py",
+      "target": "components/ui/button.py"
+    }
+  ]
+}

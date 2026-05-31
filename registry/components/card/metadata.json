@@ -1,0 +1,13 @@
+{
+  "name": "card",
+  "category": "Cards",
+  "description": "Standard container for content.",
+  "variants": ["default", "outline"],
+  "dependencies": ["tailwindcss"],
+  "files": [
+    {
+      "name": "card.html",
+      "target": "components/ui/card.html"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{% comment %}
+  Djinn Button Component
+  Usage: {% component "button" variant="primary" size="md" %} Click me {% endcomponent %}
+{% endcomment %}
+<button
+  class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background
+  {% if variant == 'primary' %} bg-blue-600 text-white hover:bg-blue-700
+  {% elif variant == 'secondary' %} bg-slate-100 text-slate-900 hover:bg-slate-200
+  {% elif variant == 'ghost' %} hover:bg-slate-100 hover:text-slate-900
+  {% elif variant == 'destructive' %} bg-red-600 text-white hover:bg-red-700
+  {% elif variant == 'outline' %} border border-slate-200 bg-transparent hover:bg-slate-100 hover:text-slate-900
+  {% else %} bg-blue-600 text-white hover:bg-blue-700
+  {% endif %}
+  {% if size == 'sm' %} h-9 px-3
+  {% elif size == 'lg' %} h-11 px-8
+  {% else %} h-10 py-2 px-4
+  {% endif %}
+  {{ class }}"
+  {% if disabled %}disabled{% endif %}
+  {{ extra_attrs|safe }}
+>
+  {{ slot }}
+</button>
