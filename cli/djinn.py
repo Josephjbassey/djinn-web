@@ -2,24 +2,41 @@ import argparse
 import os
 import requests
 import sys
-import json
 
 DEFAULT_BASE_URL = "http://localhost:8000/api"
+
 
 def get_api_url(args):
     return args.api_url or os.environ.get("DJINN_API_URL", DEFAULT_BASE_URL)
 
+
+def api_url_for(api_url, path):
+    return f"{api_url.rstrip('/')}/{path.lstrip('/')}"
+
+
+def fetch_component_detail(component_summary, api_url):
+    component_url = api_url_for(api_url, f"components/{component_summary['id']}/")
+    response = requests.get(component_url, timeout=10)
+    response.raise_for_status()
+    return response.json()
+
+
 def add_component(component_slug, api_url, with_logic=True):
     print(f"⠋ Fetching {component_slug} from registry...")
     try:
-        response = requests.get(f"{api_url}/components/", timeout=10)
+        response = requests.get(api_url_for(api_url, "components/"), timeout=10)
         response.raise_for_status()
         components = response.json()
 
-        component = next((c for c in components if c['slug'] == component_slug), None)
-        if not component:
+        component_summary = next(
+            (c for c in components if c['slug'] == component_slug),
+            None,
+        )
+        if not component_summary:
             print(f"✖ Component '{component_slug}' not found in registry.")
             sys.exit(1)
+
+        component = fetch_component_detail(component_summary, api_url)
 
         # Ensure directory exists
         os.makedirs("components/ui", exist_ok=True)
