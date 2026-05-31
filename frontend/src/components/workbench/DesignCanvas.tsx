@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 interface ComponentData {
   id: number;
   name: string;
+  slug: string;
   template_code: string;
   metadata: any;
 }
@@ -25,10 +26,6 @@ export const DesignCanvas: React.FC<CanvasProps> = ({ component, variant, size }
     );
   }
 
-  // Simple mapping of tailwind classes for the preview (since we can't run Django templates in React directly without a heavy bridge)
-  // For production, we'd use a server-side rendering endpoint for the component or a WASM-based template engine.
-  // Here we'll simulate the look based on the logic in the python file.
-
   const getVariantClasses = (v: string) => {
     switch (v) {
       case "primary": return "bg-primary text-primary-foreground hover:bg-primary/90";
@@ -36,6 +33,7 @@ export const DesignCanvas: React.FC<CanvasProps> = ({ component, variant, size }
       case "ghost": return "hover:bg-accent hover:text-accent-foreground";
       case "destructive": return "bg-destructive text-destructive-foreground hover:bg-destructive/90";
       case "outline": return "border border-input hover:bg-accent hover:text-accent-foreground";
+      case "error": return "border-destructive focus:ring-destructive";
       default: return "bg-primary text-primary-foreground";
     }
   };
@@ -49,40 +47,52 @@ export const DesignCanvas: React.FC<CanvasProps> = ({ component, variant, size }
     }
   };
 
+  const renderMockup = (props: any = {}) => {
+    const isInput = component.slug.includes("input");
+    const commonClasses = cn(
+      "rounded-md font-medium transition-colors",
+      getVariantClasses(variant),
+      getSizeClasses(size),
+      props.className
+    );
+
+    if (isInput) {
+      return (
+        <input
+          {...props}
+          className={cn("bg-background border border-border px-3 py-2", commonClasses)}
+          placeholder={`${component.name} placeholder...`}
+          readOnly
+        />
+      );
+    }
+
+    return (
+      <button {...props} className={cn("inline-flex items-center justify-center shadow-lg shadow-black/20", commonClasses)}>
+        {component.name} Action
+      </button>
+    );
+  };
+
   return (
     <div className="flex h-full flex-col items-center justify-center p-20">
       <div className="relative group">
-        {/* Alignment Guides Simulation */}
         <div className="absolute -top-8 left-0 right-0 flex justify-center opacity-0 group-hover:opacity-100 transition-opacity">
           <span className="text-[10px] text-accent/50 font-mono">W: auto | H: auto</span>
         </div>
 
-        {/* The Component Mockup */}
         <div className="p-8 border border-dashed border-muted rounded-xl bg-background/50 flex items-center justify-center">
-          <button
-            className={cn(
-              "inline-flex items-center justify-center rounded-md font-medium transition-colors shadow-lg shadow-black/20",
-              getVariantClasses(variant),
-              getSizeClasses(size)
-            )}
-          >
-            {component.name} Action
-          </button>
+          {renderMockup()}
         </div>
 
-        {/* Multi-state previews */}
         <div className="mt-12 flex gap-8">
             <div className="flex flex-col items-center gap-2">
                 <span className="text-[10px] text-muted-foreground uppercase font-bold tracking-wider">Hover</span>
-                <button className={cn("inline-flex items-center justify-center rounded-md font-medium brightness-110", getVariantClasses(variant), getSizeClasses(size))}>
-                    {component.name}
-                </button>
+                {renderMockup({ className: "brightness-110 shadow-none" })}
             </div>
             <div className="flex flex-col items-center gap-2">
                 <span className="text-[10px] text-muted-foreground uppercase font-bold tracking-wider">Disabled</span>
-                <button disabled className={cn("inline-flex items-center justify-center rounded-md font-medium opacity-50 cursor-not-allowed", getVariantClasses(variant), getSizeClasses(size))}>
-                    {component.name}
-                </button>
+                {renderMockup({ disabled: true, className: "opacity-50 cursor-not-allowed shadow-none" })}
             </div>
         </div>
       </div>

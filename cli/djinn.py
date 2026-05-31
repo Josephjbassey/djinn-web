@@ -4,19 +4,22 @@ import requests
 import sys
 import json
 
-BASE_URL = "http://localhost:8000/api"
+DEFAULT_BASE_URL = "http://localhost:8000/api"
 
-def add_component(component_slug, with_logic=True):
+def get_api_url(args):
+    return args.api_url or os.environ.get("DJINN_API_URL", DEFAULT_BASE_URL)
+
+def add_component(component_slug, api_url, with_logic=True):
     print(f"⠋ Fetching {component_slug} from registry...")
     try:
-        response = requests.get(f"{BASE_URL}/components/")
+        response = requests.get(f"{api_url}/components/", timeout=10)
         response.raise_for_status()
         components = response.json()
 
         component = next((c for c in components if c['slug'] == component_slug), None)
         if not component:
             print(f"✖ Component '{component_slug}' not found in registry.")
-            return
+            sys.exit(1)
 
         # Ensure directory exists
         os.makedirs("components/ui", exist_ok=True)
@@ -29,18 +32,30 @@ def add_component(component_slug, with_logic=True):
 
         # Write logic if requested
         if with_logic:
-            logic_path = f"components/ui/{component_slug}.py"
-            with open(logic_path, "w") as f:
-                f.write(component['logic_code'])
-            print(f"✔ Created {logic_path}")
+            # Defensive check for logic_code
+            if component.get('logic_code'):
+                logic_path = f"components/ui/{component_slug}.py"
+                with open(logic_path, "w") as f:
+                    f.write(component['logic_code'])
+                print(f"✔ Created {logic_path}")
+            else:
+                print(f"ℹ Skipping logic file for {component_slug} (none provided).")
 
         print(f"\n✔ Component {component_slug} successfully installed.")
 
+    except requests.exceptions.RequestException as e:
+        print(f"✖ Network/Request Error: {str(e)}")
+        sys.exit(1)
+    except OSError as e:
+        print(f"✖ File Error: {str(e)}")
+        sys.exit(1)
     except Exception as e:
-        print(f"✖ Error: {str(e)}")
+        print(f"✖ Unexpected Error: {str(e)}")
+        sys.exit(1)
 
 def main():
     parser = argparse.ArgumentParser(description="Djinn CLI - Own your Django components")
+    parser.add_argument("--api-url", help="Override the default Djinn API URL")
     subparsers = parser.add_subparsers(dest="command")
 
     # Add command
@@ -57,9 +72,10 @@ def main():
     diff_parser.add_argument("component", help="Slug of the component to diff")
 
     args = parser.parse_args()
+    api_url = get_api_url(args)
 
     if args.command == "add":
-        add_component(args.component, not args.no_logic)
+        add_component(args.component, api_url, not args.no_logic)
     elif args.command in ["update", "diff"]:
         print(f"ℹ Command '{args.command}' is not fully implemented in this preview.")
     else:

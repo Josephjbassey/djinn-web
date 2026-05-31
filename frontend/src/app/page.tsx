@@ -7,18 +7,37 @@ import { DesignCanvas } from "@/components/workbench/DesignCanvas";
 import { PropertyInspector } from "@/components/workbench/PropertyInspector";
 import { CodeDrawer } from "@/components/workbench/CodeDrawer";
 
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE || "http://localhost:8000";
+
 export default function Home() {
   const [selectedComponentId, setSelectedComponentId] = useState<number | null>(null);
   const [componentData, setComponentData] = useState<any>(null);
   const [variant, setVariant] = useState("primary");
   const [size, setSize] = useState("md");
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (selectedComponentId) {
-      fetch(`http://localhost:8000/api/components/${selectedComponentId}/`)
-        .then((res) => res.json())
-        .then((data) => setComponentData(data))
-        .catch((err) => console.error("Failed to fetch component", err));
+      const controller = new AbortController();
+      const signal = controller.signal;
+
+      fetch(`${API_BASE}/api/components/${selectedComponentId}/`, { signal })
+        .then((res) => {
+          if (!res.ok) throw new Error("Failed to fetch component details");
+          return res.json();
+        })
+        .then((data) => {
+          setComponentData(data);
+          setError(null);
+        })
+        .catch((err) => {
+          if (err.name !== 'AbortError') {
+            console.error("Failed to fetch component", err);
+            setError("Failed to load component details");
+          }
+        });
+
+      return () => controller.abort();
     } else {
       setComponentData(null);
     }
@@ -27,13 +46,20 @@ export default function Home() {
   return (
     <MainLayout
       leftSidebar={<ComponentExplorer onSelect={setSelectedComponentId} selectedId={selectedComponentId} />}
-      canvas={<DesignCanvas component={componentData} variant={variant} size={size} />}
+      canvas={
+        error ? (
+          <div className="flex h-full items-center justify-center text-destructive">{error}</div>
+        ) : (
+          <DesignCanvas component={componentData} variant={variant} size={size} />
+        )
+      }
       rightSidebar={
         <PropertyInspector
           variant={variant}
           onVariantChange={setVariant}
           size={size}
           onSizeChange={setSize}
+          component={componentData}
         />
       }
       bottomDrawer={<CodeDrawer component={componentData} />}
