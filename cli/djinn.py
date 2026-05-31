@@ -1,94 +1,67 @@
-import os
-import sys
 import argparse
-import json
+import os
 import requests
+import sys
+import json
 
-# For production this would be a Vercel URL
-DEFAULT_REGISTRY_URL = "http://localhost:3000/registry.json"
+BASE_URL = "http://localhost:8000/api"
 
-def init():
-    """Initializes the local project for Djinn components."""
-    if not os.path.exists("components/ui"):
-        os.makedirs("components/ui", exist_ok=True)
-        print("✓ Created components/ui directory")
-
-    djinn_config = {
-        "component_dir": "components/ui",
-        "registry": DEFAULT_REGISTRY_URL
-    }
-
-    with open("djinn.json", "w") as f:
-        json.dump(djinn_config, f, indent=2)
-    print("✓ Created djinn.json config")
-
-def add(component_name):
-    """Adds a component from the registry to the local project."""
-    if not os.path.exists("djinn.json"):
-        print("Error: djinn.json not found. Run 'djinn init' first.")
-        return
-
-    with open("djinn.json", "r") as f:
-        config = json.load(f)
-
-    registry_url = config.get("registry", DEFAULT_REGISTRY_URL)
-
+def add_component(component_slug, with_logic=True):
+    print(f"⠋ Fetching {component_slug} from registry...")
     try:
-        response = requests.get(registry_url)
+        response = requests.get(f"{BASE_URL}/components/")
         response.raise_for_status()
-        registry_data = response.json()
+        components = response.json()
 
-        # Search for component in all categories
-        component = None
-        for cat_name, components in registry_data.get('categories', {}).items():
-            found = next((c for c in components if c['name'] == component_name), None)
-            if found:
-                component = found
-                break
-
+        component = next((c for c in components if c['slug'] == component_slug), None)
         if not component:
-            print(f"Error: Component '{component_name}' not found in registry.")
+            print(f"✖ Component '{component_slug}' not found in registry.")
             return
 
-        metadata = component.get('metadata', {})
-        for file_info in metadata.get('files', []):
-            file_name = file_info['name']
-            target_path = file_info['target']
+        # Ensure directory exists
+        os.makedirs("components/ui", exist_ok=True)
 
-            content = component['files'].get(file_name)
-            if not content:
-                print(f"Warning: Content for {file_name} not found in registry.")
-                continue
+        # Write template
+        template_path = f"components/ui/{component_slug}.html"
+        with open(template_path, "w") as f:
+            f.write(component['template_code'])
+        print(f"✔ Created {template_path}")
 
-            # Ensure target directory exists
-            os.makedirs(os.path.dirname(target_path), exist_ok=True)
+        # Write logic if requested
+        if with_logic:
+            logic_path = f"components/ui/{component_slug}.py"
+            with open(logic_path, "w") as f:
+                f.write(component['logic_code'])
+            print(f"✔ Created {logic_path}")
 
-            with open(target_path, "w") as f:
-                f.write(content)
-            print(f"✓ Created {target_path}")
-
-        print(f"Successfully added '{component_name}' component.")
+        print(f"\n✔ Component {component_slug} successfully installed.")
 
     except Exception as e:
-        print(f"Error fetching from registry: {e}")
+        print(f"✖ Error: {str(e)}")
 
 def main():
-    parser = argparse.ArgumentParser(description="Djinn CLI - Django Component Manager")
+    parser = argparse.ArgumentParser(description="Djinn CLI - Own your Django components")
     subparsers = parser.add_subparsers(dest="command")
 
-    # Init command
-    subparsers.add_parser("init", help="Initialize Djinn in the current project")
-
     # Add command
-    add_parser = subparsers.add_parser("add", help="Add a component from the registry")
-    add_parser.add_argument("component", help="Name of the component to add")
+    add_parser = subparsers.add_parser("add", help="Add a component to your project")
+    add_parser.add_argument("component", help="Slug of the component to add")
+    add_parser.add_argument("--no-logic", action="store_true", help="Skip python logic file")
+
+    # Update command (mock)
+    update_parser = subparsers.add_parser("update", help="Update an existing component")
+    update_parser.add_argument("component", help="Slug of the component to update")
+
+    # Diff command (mock)
+    diff_parser = subparsers.add_parser("diff", help="Diff local component with registry")
+    diff_parser.add_argument("component", help="Slug of the component to diff")
 
     args = parser.parse_args()
 
-    if args.command == "init":
-        init()
-    elif args.command == "add":
-        add(args.component)
+    if args.command == "add":
+        add_component(args.component, not args.no_logic)
+    elif args.command in ["update", "diff"]:
+        print(f"ℹ Command '{args.command}' is not fully implemented in this preview.")
     else:
         parser.print_help()
 

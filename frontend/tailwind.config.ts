@@ -6,7 +6,6 @@ const config: Config = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  darkMode: 'class',
   theme: {
     extend: {
       colors: {
@@ -18,13 +17,28 @@ const config: Config = {
         },
         secondary: {
           DEFAULT: "#1e293b",
-          foreground: "#94a3b8",
+          foreground: "#f8fafc",
         },
         accent: {
           DEFAULT: "#0ea5e9",
           foreground: "#ffffff",
         },
-        outline: "#334155",
+        destructive: {
+          DEFAULT: "#ef4444",
+          foreground: "#ffffff",
+        },
+        muted: {
+          DEFAULT: "#334155",
+          foreground: "#94a3b8",
+        },
+        border: "#1e293b",
+        input: "#1e293b",
+        ring: "#3b82f6",
+      },
+      borderRadius: {
+        lg: "0.5rem",
+        md: "calc(0.5rem - 2px)",
+        sm: "calc(0.5rem - 4px)",
       },
     },
   },
