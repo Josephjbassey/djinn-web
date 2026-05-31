@@ -1,0 +1,13 @@
+<div class="rounded-[var(--radius)] border border-outline bg-white/[0.03] text-white shadow-2xl backdrop-blur-sm transition-all hover:border-[var(--primary)]/30 {{ class }}">
+  {% if title %}
+  <div class="flex flex-col space-y-2 p-8 border-b border-outline/50">
+    <h3 class="text-xl font-black tracking-tight text-white/90 uppercase">{{ title }}</h3>
+    {% if description %}
+    <p class="text-xs font-medium text-slate-500 uppercase tracking-widest">{{ description }}</p>
+    {% endif %}
+  </div>
+  {% endif %}
+  <div class="p-8">
+    {{ slot }}
+  </div>
+</div>
