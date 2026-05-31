@@ -3,7 +3,7 @@
   {% if disabled %}disabled{% endif %}
   {{ extra_attrs|safe }}
 >
-  {% if icon %}<span class="mr-2">{{ icon|safe }}</span>{% endif %}
+  {% if icon %}<span class="mr-2">{{ icon }}</span>{% endif %}
   {{ label }}
   {% if loading %}<span class="ml-2 animate-spin">...</span>{% endif %}
 </button>

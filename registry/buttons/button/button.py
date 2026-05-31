@@ -1,3 +1,4 @@
+import html
 from django_components import component
 
 @component.register("button")
@@ -17,6 +18,10 @@ class Button(component.Component):
             "md": "h-10 py-2 px-4",
             "lg": "h-11 px-8 rounded-md"
         }
+
+        # Escape attribute values to prevent XSS
+        extra_attrs = " ".join(f'{k}="{html.escape(str(v))}"' for k, v in kwargs.items())
+
         return {
             "label": label,
             "variant_classes": variants.get(variant, variants["primary"]),
@@ -24,5 +29,5 @@ class Button(component.Component):
             "disabled": disabled,
             "loading": loading,
             "icon": icon,
-            "extra_attrs": " ".join(f'{k}="{v}"' for k, v in kwargs.items())
+            "extra_attrs": extra_attrs
         }

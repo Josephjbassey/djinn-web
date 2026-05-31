@@ -5,6 +5,8 @@ import * as Collapsible from "@radix-ui/react-collapsible";
 import { ChevronDown, ChevronRight, Search, Box } from "lucide-react";
 import { cn } from "@/lib/utils";
 
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE || "http://localhost:8000";
+
 interface ComponentItem {
   id: number;
   name: string;
@@ -28,10 +30,22 @@ export const ComponentExplorer: React.FC<ExplorerProps> = ({ onSelect, selectedI
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/categories/")
-      .then((res) => res.json())
+    const controller = new AbortController();
+    const signal = controller.signal;
+
+    fetch(`${API_BASE}/api/categories/`, { signal })
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to fetch categories");
+        return res.json();
+      })
       .then((data) => setCategories(data))
-      .catch((err) => console.error("Failed to fetch categories", err));
+      .catch((err) => {
+        if (err.name !== 'AbortError') {
+          console.error("Failed to fetch categories", err);
+        }
+      });
+
+    return () => controller.abort();
   }, []);
 
   const filteredCategories = categories.map(cat => ({
@@ -49,6 +63,7 @@ export const ComponentExplorer: React.FC<ExplorerProps> = ({ onSelect, selectedI
           <input
             type="text"
             placeholder="Search registry..."
+            aria-label="Search registry"
             className="w-full bg-background border border-border rounded-md py-1.5 pl-8 pr-3 text-sm focus:outline-none focus:ring-1 focus:ring-accent"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}

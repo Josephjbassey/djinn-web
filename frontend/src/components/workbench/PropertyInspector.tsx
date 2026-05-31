@@ -9,6 +9,7 @@ interface InspectorProps {
   onVariantChange: (v: string) => void;
   size: string;
   onSizeChange: (s: string) => void;
+  component?: any;
 }
 
 export const PropertyInspector: React.FC<InspectorProps> = ({
@@ -16,7 +17,15 @@ export const PropertyInspector: React.FC<InspectorProps> = ({
   onVariantChange,
   size,
   onSizeChange,
+  component,
 }) => {
+  const accessibility = component?.metadata?.accessibility || {
+    keyboard_supported: true,
+    role: component?.slug?.includes("input") ? "textbox" : "button"
+  };
+
+  const availableVariants = component?.metadata?.variants || ["primary", "secondary", "ghost", "destructive", "outline"];
+
   return (
     <div className="flex flex-col gap-6 p-4">
       <div className="flex flex-col gap-3">
@@ -29,7 +38,7 @@ export const PropertyInspector: React.FC<InspectorProps> = ({
           onValueChange={(val) => val && onVariantChange(val)}
           className="grid grid-cols-2 gap-2"
         >
-          {["primary", "secondary", "ghost", "destructive", "outline"].map((v) => (
+          {availableVariants.map((v: string) => (
             <ToggleGroup.Item
               key={v}
               value={v}
@@ -81,11 +90,13 @@ export const PropertyInspector: React.FC<InspectorProps> = ({
         <label className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
           Accessibility
         </label>
-        <div className="p-3 bg-green-500/10 border border-green-500/20 rounded-md text-[10px] text-green-400">
-            ✔ Keyboard Navigation Supported
-        </div>
+        {accessibility.keyboard_supported && (
+          <div className="p-3 bg-green-500/10 border border-green-500/20 rounded-md text-[10px] text-green-400">
+              ✔ Keyboard Navigation Supported
+          </div>
+        )}
         <div className="p-3 bg-blue-500/10 border border-blue-500/20 rounded-md text-[10px] text-blue-400">
-            ℹ ARIA: role="button"
+            ℹ ARIA: role="{accessibility.role}"
         </div>
       </div>
     </div>

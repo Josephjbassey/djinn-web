@@ -2,13 +2,21 @@ import json
 import os
 from django.core.management.base import BaseCommand
 from django.utils.text import slugify
+from django.conf import settings
 from core.models import Category, Component
 
 class Command(BaseCommand):
     help = 'Syncs the registry/ folder with the database'
 
+    def add_arguments(self, parser):
+        parser.add_argument(
+            '--registry-path',
+            type=str,
+            help='Path to the registry folder',
+        )
+
     def handle(self, *args, **options):
-        registry_path = '/app/registry'
+        registry_path = options.get('registry_path') or getattr(settings, 'REGISTRY_ROOT', '/app/registry')
 
         if not os.path.exists(registry_path):
             self.stdout.write(self.style.ERROR(f'Registry path {registry_path} does not exist'))
@@ -36,18 +44,35 @@ class Command(BaseCommand):
                 with open(metadata_file, 'r') as f:
                     metadata = json.load(f)
 
-                template_file = os.path.join(component_path, metadata['files']['template'])
-                logic_file = os.path.join(component_path, metadata['files']['logic'])
+                files_metadata = metadata.get('files', {})
+                template_file_name = None
+                logic_file_name = None
+
+                if isinstance(files_metadata, dict):
+                    template_file_name = files_metadata.get('template')
+                    logic_file_name = files_metadata.get('logic')
+                elif isinstance(files_metadata, list):
+                    # Handle legacy list format
+                    for f_meta in files_metadata:
+                        name = f_meta.get('name', '')
+                        if name.endswith('.html'):
+                            template_file_name = name
+                        elif name.endswith('.py'):
+                            logic_file_name = name
 
                 template_code = ''
-                if os.path.exists(template_file):
-                    with open(template_file, 'r') as f:
-                        template_code = f.read()
+                if template_file_name:
+                    template_file = os.path.join(component_path, template_file_name)
+                    if os.path.exists(template_file):
+                        with open(template_file, 'r') as f:
+                            template_code = f.read()
 
                 logic_code = ''
-                if os.path.exists(logic_file):
-                    with open(logic_file, 'r') as f:
-                        logic_code = f.read()
+                if logic_file_name:
+                    logic_file = os.path.join(component_path, logic_file_name)
+                    if os.path.exists(logic_file):
+                        with open(logic_file, 'r') as f:
+                            logic_code = f.read()
 
                 Component.objects.update_or_create(
                     slug=slugify(component_name),

@@ -3,7 +3,7 @@
   "category": "inputs",
   "description": "Standard text input field.",
   "variants": ["default", "error"],
-  "dependencies": ["tailwindcss"],
+  "dependencies": ["tailwindcss", "django-components"],
   "files": {
     "template": "input.html",
     "logic": "input.py"
