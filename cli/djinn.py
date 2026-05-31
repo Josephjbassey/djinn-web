@@ -4,7 +4,8 @@ import argparse
 import json
 import requests
 
-API_BASE_URL = "http://localhost:8000/api"
+# For production this would be a Vercel URL
+DEFAULT_REGISTRY_URL = "http://localhost:3000/registry.json"
 
 def init():
     """Initializes the local project for Djinn components."""
@@ -14,7 +15,7 @@ def init():
 
     djinn_config = {
         "component_dir": "components/ui",
-        "registry": API_BASE_URL
+        "registry": DEFAULT_REGISTRY_URL
     }
 
     with open("djinn.json", "w") as f:
@@ -27,34 +28,49 @@ def add(component_name):
         print("Error: djinn.json not found. Run 'djinn init' first.")
         return
 
+    with open("djinn.json", "r") as f:
+        config = json.load(f)
+
+    registry_url = config.get("registry", DEFAULT_REGISTRY_URL)
+
     try:
-        response = requests.get(f"{API_BASE_URL}/components/")
+        response = requests.get(registry_url)
         response.raise_for_status()
-        components = response.data if hasattr(response, 'data') else response.json()
+        registry_data = response.json()
 
-        # In case it's DRF paginated or list
-        if isinstance(components, dict) and 'results' in components:
-            components = components['results']
-
-        component = next((c for c in components if c['name'] == component_name), None)
+        # Search for component in all categories
+        component = None
+        for cat_name, components in registry_data.get('categories', {}).items():
+            found = next((c for c in components if c['name'] == component_name), None)
+            if found:
+                component = found
+                break
 
         if not component:
             print(f"Error: Component '{component_name}' not found in registry.")
             return
 
-        for file_info in component['files']:
-            target_path = file_info['target_path']
+        metadata = component.get('metadata', {})
+        for file_info in metadata.get('files', []):
+            file_name = file_info['name']
+            target_path = file_info['target']
+
+            content = component['files'].get(file_name)
+            if not content:
+                print(f"Warning: Content for {file_name} not found in registry.")
+                continue
+
             # Ensure target directory exists
             os.makedirs(os.path.dirname(target_path), exist_ok=True)
 
             with open(target_path, "w") as f:
-                f.write(file_info['content'])
+                f.write(content)
             print(f"✓ Created {target_path}")
 
         print(f"Successfully added '{component_name}' component.")
 
     except Exception as e:
-        print(f"Error fetching component: {e}")
+        print(f"Error fetching from registry: {e}")
 
 def main():
     parser = argparse.ArgumentParser(description="Djinn CLI - Django Component Manager")
