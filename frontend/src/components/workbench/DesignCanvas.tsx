@@ -2,22 +2,16 @@
 
 import React from "react";
 import { cn } from "@/lib/utils";
-
-interface ComponentData {
-  id: number;
-  name: string;
-  slug: string;
-  template_code: string;
-  metadata: any;
-}
+import { Component, CustomStyles } from "@/types";
 
 interface CanvasProps {
-  component: ComponentData | null;
+  component: Component | null;
   variant: string;
   size: string;
+  customStyles: CustomStyles;
 }
 
-export const DesignCanvas: React.FC<CanvasProps> = ({ component, variant, size }) => {
+export const DesignCanvas: React.FC<CanvasProps> = ({ component, variant, size, customStyles }) => {
   if (!component) {
     return (
       <div className="flex h-full items-center justify-center text-muted-foreground italic">
@@ -28,13 +22,13 @@ export const DesignCanvas: React.FC<CanvasProps> = ({ component, variant, size }
 
   const getVariantClasses = (v: string) => {
     switch (v) {
-      case "primary": return "bg-primary text-primary-foreground hover:bg-primary/90";
+      case "primary": return "text-primary-foreground";
       case "secondary": return "bg-secondary text-secondary-foreground hover:bg-secondary/80";
       case "ghost": return "hover:bg-accent hover:text-accent-foreground";
       case "destructive": return "bg-destructive text-destructive-foreground hover:bg-destructive/90";
       case "outline": return "border border-input hover:bg-accent hover:text-accent-foreground";
       case "error": return "border-destructive focus:ring-destructive";
-      default: return "bg-primary text-primary-foreground";
+      default: return "text-primary-foreground";
     }
   };
 
@@ -47,19 +41,44 @@ export const DesignCanvas: React.FC<CanvasProps> = ({ component, variant, size }
     }
   };
 
-  const renderMockup = (props: any = {}) => {
+  const getAnimationClass = (a: string) => {
+    switch (a) {
+      case "pulse": return "animate-pulse";
+      case "bounce": return "animate-bounce";
+      case "spin": return "animate-spin";
+      case "ping": return "animate-ping";
+      default: return "";
+    }
+  };
+
+  const renderMockup = (props: React.HTMLAttributes<HTMLElement> & { disabled?: boolean } = {}) => {
     const isInput = component.slug.includes("input");
+    const variantClasses = getVariantClasses(variant);
+    const sizeClasses = getSizeClasses(size);
+    const animationClass = getAnimationClass(customStyles.animation);
+
+    const style: React.CSSProperties = {
+        borderRadius: `${customStyles.borderRadius}px`,
+        ...props.style
+    };
+
+    if (variant === "primary") {
+        style.backgroundColor = customStyles.primaryColor;
+    }
+
     const commonClasses = cn(
-      "rounded-md font-medium transition-colors",
-      getVariantClasses(variant),
-      getSizeClasses(size),
+      "font-medium transition-all duration-200",
+      variantClasses,
+      sizeClasses,
+      animationClass,
       props.className
     );
 
     if (isInput) {
       return (
         <input
-          {...props}
+          {...(props as React.InputHTMLAttributes<HTMLInputElement>)}
+          style={style}
           className={cn("bg-background border border-border px-3 py-2", commonClasses)}
           placeholder={`${component.name} placeholder...`}
           readOnly
@@ -68,7 +87,11 @@ export const DesignCanvas: React.FC<CanvasProps> = ({ component, variant, size }
     }
 
     return (
-      <button {...props} className={cn("inline-flex items-center justify-center shadow-lg shadow-black/20", commonClasses)}>
+      <button
+        {...(props as React.ButtonHTMLAttributes<HTMLButtonElement>)}
+        style={style}
+        className={cn("inline-flex items-center justify-center shadow-lg shadow-black/20", commonClasses)}
+      >
         {component.name} Action
       </button>
     );
@@ -81,18 +104,22 @@ export const DesignCanvas: React.FC<CanvasProps> = ({ component, variant, size }
           <span className="text-[10px] text-accent/50 font-mono">W: auto | H: auto</span>
         </div>
 
-        <div className="p-8 border border-dashed border-muted rounded-xl bg-background/50 flex items-center justify-center">
+        <div className="p-12 border border-dashed border-muted rounded-2xl bg-background/50 flex items-center justify-center min-w-[300px]">
           {renderMockup()}
         </div>
 
-        <div className="mt-12 flex gap-8">
-            <div className="flex flex-col items-center gap-2">
-                <span className="text-[10px] text-muted-foreground uppercase font-bold tracking-wider">Hover</span>
-                {renderMockup({ className: "brightness-110 shadow-none" })}
+        <div className="mt-12 flex gap-8 justify-center">
+            <div className="flex flex-col items-center gap-3">
+                <span className="text-[10px] text-muted-foreground uppercase font-black tracking-widest">Normal</span>
+                {renderMockup({ className: "shadow-none" })}
             </div>
-            <div className="flex flex-col items-center gap-2">
-                <span className="text-[10px] text-muted-foreground uppercase font-bold tracking-wider">Disabled</span>
-                {renderMockup({ disabled: true, className: "opacity-50 cursor-not-allowed shadow-none" })}
+            <div className="flex flex-col items-center gap-3">
+                <span className="text-[10px] text-muted-foreground uppercase font-black tracking-widest">Hover</span>
+                {renderMockup({ className: "brightness-110 shadow-xl scale-105" })}
+            </div>
+            <div className="flex flex-col items-center gap-3">
+                <span className="text-[10px] text-muted-foreground uppercase font-black tracking-widest">Disabled</span>
+                {renderMockup({ disabled: true, className: "opacity-40 cursor-not-allowed shadow-none grayscale" })}
             </div>
         </div>
       </div>

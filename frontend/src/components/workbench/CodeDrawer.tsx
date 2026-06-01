@@ -4,9 +4,10 @@ import React from "react";
 import * as Tabs from "@radix-ui/react-tabs";
 import { cn } from "@/lib/utils";
 import { Terminal, FileJson, Code, Sparkles } from "lucide-react";
+import { Component } from "@/types";
 
 interface CodeDrawerProps {
-  component: any;
+  component: Component | null;
 }
 
 export const CodeDrawer: React.FC<CodeDrawerProps> = ({ component }) => {
@@ -70,7 +71,12 @@ export const CodeDrawer: React.FC<CodeDrawerProps> = ({ component }) => {
                     placeholder="e.g. 'Add a loading state variant' or 'Change default padding'"
                     className="flex-1 bg-background border border-border rounded-md px-3 py-1.5 focus:outline-none focus:ring-1 focus:ring-accent"
                 />
-                <button className="px-4 py-1.5 bg-accent text-white rounded-md text-xs font-bold">Generate</button>
+                <button
+                  onClick={() => alert("AI Generation started... (Demo)")}
+                  className="px-4 py-1.5 bg-accent text-white rounded-md text-xs font-bold hover:bg-accent/90 transition-colors"
+                >
+                  Generate
+                </button>
             </div>
           </div>
         </Tabs.Content>

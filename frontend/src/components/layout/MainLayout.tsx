@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Sparkles, Grid, Box, Palette, Terminal, Search } from "lucide-react";
+import { Sparkles, Grid, Box, Palette, Terminal, Search, RefreshCw, FileText } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface LayoutProps {
@@ -51,6 +51,18 @@ export const MainLayout: React.FC<LayoutProps> = ({
                isActive("/themes") ? "bg-accent/20 text-accent font-bold" : "text-muted-foreground hover:text-foreground hover:bg-muted"
              )}>
                 <Palette size={14} /> Themes
+             </Link>
+             <Link href="/sync" className={cn(
+               "px-3 py-1.5 rounded-md text-xs font-medium flex items-center gap-2 transition-colors",
+               isActive("/sync") ? "bg-accent/20 text-accent font-bold" : "text-muted-foreground hover:text-foreground hover:bg-muted"
+             )}>
+                <RefreshCw size={14} /> Sync
+             </Link>
+             <Link href="/docs" className={cn(
+               "px-3 py-1.5 rounded-md text-xs font-medium flex items-center gap-2 transition-colors",
+               isActive("/docs") ? "bg-accent/20 text-accent font-bold" : "text-muted-foreground hover:text-foreground hover:bg-muted"
+             )}>
+                <FileText size={14} /> Docs
              </Link>
           </div>
         </div>
