@@ -2,4 +2,1581 @@
 > frontend@0.1.0 dev
 > next dev
 
-sh: 1: next: not found
+▲ Next.js 16.2.6 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.0.2:3000
+✓ Ready in 530ms
+Attention: Next.js now collects completely anonymous telemetry regarding usage.
+This information is used to shape Next.js' roadmap and prioritize features.
+You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+https://nextjs.org/telemetry
+
+
+○ Compiling / ...
+ HEAD / 200 in 5.0s (next.js: 4.6s, application-code: 423ms)
+ GET / 200 in 127ms (next.js: 10ms, application-code: 118ms)
+ GET /registry 404 in 684ms (next.js: 540ms, application-code: 143ms)
+ GET /workbench?id=15 404 in 173ms (next.js: 26ms, application-code: 147ms)
+ GET /themes 404 in 93ms (next.js: 5ms, application-code: 88ms)
+ GET /forge 404 in 82ms (next.js: 4ms, application-code: 77ms)
+ GET /sync 404 in 50ms (next.js: 4ms, application-code: 45ms)
+⨯ ./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  [90m4 |[0m ... [33mLink[0m [36mfrom[0m [32m"next/link"[0m;
+  [90m5 |[0m ... { motion } [36mfrom[0m [32m"framer-motion"[0m;
+[31m[1m>[0m [90m6 |[0m ... { [33mTerminal[0m, [33mSparkles[0m, [33mBox[0m, [33mArrowRight[0m, [33mGithub[0m, [33mCode[0m, [33mLayout[0m, [33mHub[0m, [33mGrid[0m } [36mfrom[0m [32m"lucide-r...[0m
+  [90m  |[0m    [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m7 |[0m ... { cn } [36mfrom[0m [32m"@/lib/utils"[0m;
+  [90m8 |[0m ...
+  [90m9 |[0m ... [36mdefault[0m [36mfunction[0m [33mLandingPage[0m() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-client] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+
+
+./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  [90m4 |[0m ... [33mLink[0m [36mfrom[0m [32m"next/link"[0m;
+  [90m5 |[0m ... { motion } [36mfrom[0m [32m"framer-motion"[0m;
+[31m[1m>[0m [90m6 |[0m ... { [33mTerminal[0m, [33mSparkles[0m, [33mBox[0m, [33mArrowRight[0m, [33mGithub[0m, [33mCode[0m, [33mLayout[0m, [33mHub[0m, [33mGrid[0m } [36mfrom[0m [32m"lucide-r...[0m
+  [90m  |[0m    [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m7 |[0m ... { cn } [36mfrom[0m [32m"@/lib/utils"[0m;
+  [90m8 |[0m ...
+  [90m9 |[0m ... [36mdefault[0m [36mfunction[0m [33mLandingPage[0m() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-ssr] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+
+ GET / 500 in 10.7s (next.js: 10.5s, application-code: 219ms)
+[browser] Uncaught Error: ./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  4 | ... Link from "next/link";
+  5 | ... { motion } from "framer-motion";
+> 6 | ... { Terminal, Sparkles, Box, ArrowRight, Github, Code, Layout, Hub, Grid } from "lucide-r...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | ... { cn } from "@/lib/utils";
+  8 | ...
+  9 | ... default function LandingPage() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-client] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+
+    at <unknown> (Error: ./src/app/page.tsx:6:1)
+    at <unknown> (Error: (./src/app/page.tsx:6:1)
+[browser] ./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  4 | ... Link from "next/link";
+  5 | ... { motion } from "framer-motion";
+> 6 | ... { Terminal, Sparkles, Box, ArrowRight, Github, Code, Layout, Hub, Grid } from "lucide-r...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | ... { cn } from "@/lib/utils";
+  8 | ...
+  9 | ... default function LandingPage() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-client] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+[browser] ./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  4 | ... Link from "next/link";
+  5 | ... { motion } from "framer-motion";
+> 6 | ... { Terminal, Sparkles, Box, ArrowRight, Github, Code, Layout, Hub, Grid } from "lucide-r...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | ... { cn } from "@/lib/utils";
+  8 | ...
+  9 | ... default function LandingPage() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-ssr] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+[browser] ./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  4 | ... Link from "next/link";
+  5 | ... { motion } from "framer-motion";
+> 6 | ... { Terminal, Sparkles, Box, ArrowRight, Github, Code, Layout, Hub, Grid } from "lucide-r...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | ... { cn } from "@/lib/utils";
+  8 | ...
+  9 | ... default function LandingPage() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-client] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+[browser] ./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  4 | ... Link from "next/link";
+  5 | ... { motion } from "framer-motion";
+> 6 | ... { Terminal, Sparkles, Box, ArrowRight, Github, Code, Layout, Hub, Grid } from "lucide-r...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | ... { cn } from "@/lib/utils";
+  8 | ...
+  9 | ... default function LandingPage() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-ssr] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+[browser] ./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  4 | ... Link from "next/link";
+  5 | ... { motion } from "framer-motion";
+> 6 | ... { Terminal, Sparkles, Box, ArrowRight, Github, Code, Layout, Hub, Grid } from "lucide-r...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | ... { cn } from "@/lib/utils";
+  8 | ...
+  9 | ... default function LandingPage() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-client] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+[browser] ./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  4 | ... Link from "next/link";
+  5 | ... { motion } from "framer-motion";
+> 6 | ... { Terminal, Sparkles, Box, ArrowRight, Github, Code, Layout, Hub, Grid } from "lucide-r...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | ... { cn } from "@/lib/utils";
+  8 | ...
+  9 | ... default function LandingPage() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-ssr] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+ GET /registry 500 in 1364ms (next.js: 1300ms, application-code: 64ms)
+[browser] ./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  4 | ... Link from "next/link";
+  5 | ... { motion } from "framer-motion";
+> 6 | ... { Terminal, Sparkles, Box, ArrowRight, Github, Code, Layout, Hub, Grid } from "lucide-r...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | ... { cn } from "@/lib/utils";
+  8 | ...
+  9 | ... default function LandingPage() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-client] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+[browser] ./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  4 | ... Link from "next/link";
+  5 | ... { motion } from "framer-motion";
+> 6 | ... { Terminal, Sparkles, Box, ArrowRight, Github, Code, Layout, Hub, Grid } from "lucide-r...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | ... { cn } from "@/lib/utils";
+  8 | ...
+  9 | ... default function LandingPage() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-ssr] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+[browser] Uncaught Error: ./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  4 | ... Link from "next/link";
+  5 | ... { motion } from "framer-motion";
+> 6 | ... { Terminal, Sparkles, Box, ArrowRight, Github, Code, Layout, Hub, Grid } from "lucide-r...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | ... { cn } from "@/lib/utils";
+  8 | ...
+  9 | ... default function LandingPage() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-client] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+
+    at <unknown> (Error: ./src/app/page.tsx:6:1)
+    at <unknown> (Error: (./src/app/page.tsx:6:1)
+[browser] ./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  4 | ... Link from "next/link";
+  5 | ... { motion } from "framer-motion";
+> 6 | ... { Terminal, Sparkles, Box, ArrowRight, Github, Code, Layout, Hub, Grid } from "lucide-r...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | ... { cn } from "@/lib/utils";
+  8 | ...
+  9 | ... default function LandingPage() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-client] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+[browser] ./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  4 | ... Link from "next/link";
+  5 | ... { motion } from "framer-motion";
+> 6 | ... { Terminal, Sparkles, Box, ArrowRight, Github, Code, Layout, Hub, Grid } from "lucide-r...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | ... { cn } from "@/lib/utils";
+  8 | ...
+  9 | ... default function LandingPage() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-ssr] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+ GET /workbench?id=15 500 in 24ms (next.js: 10ms, application-code: 14ms)
+[browser] Uncaught Error: ./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  4 | ... Link from "next/link";
+  5 | ... { motion } from "framer-motion";
+> 6 | ... { Terminal, Sparkles, Box, ArrowRight, Github, Code, Layout, Hub, Grid } from "lucide-r...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | ... { cn } from "@/lib/utils";
+  8 | ...
+  9 | ... default function LandingPage() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-client] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+
+    at <unknown> (Error: ./src/app/page.tsx:6:1)
+    at <unknown> (Error: (./src/app/page.tsx:6:1)
+[browser] ./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  4 | ... Link from "next/link";
+  5 | ... { motion } from "framer-motion";
+> 6 | ... { Terminal, Sparkles, Box, ArrowRight, Github, Code, Layout, Hub, Grid } from "lucide-r...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | ... { cn } from "@/lib/utils";
+  8 | ...
+  9 | ... default function LandingPage() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-client] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+[browser] ./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  4 | ... Link from "next/link";
+  5 | ... { motion } from "framer-motion";
+> 6 | ... { Terminal, Sparkles, Box, ArrowRight, Github, Code, Layout, Hub, Grid } from "lucide-r...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | ... { cn } from "@/lib/utils";
+  8 | ...
+  9 | ... default function LandingPage() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-ssr] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+[browser] ./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  4 | ... Link from "next/link";
+  5 | ... { motion } from "framer-motion";
+> 6 | ... { Terminal, Sparkles, Box, ArrowRight, Github, Code, Layout, Hub, Grid } from "lucide-r...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | ... { cn } from "@/lib/utils";
+  8 | ...
+  9 | ... default function LandingPage() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-client] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+[browser] ./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  4 | ... Link from "next/link";
+  5 | ... { motion } from "framer-motion";
+> 6 | ... { Terminal, Sparkles, Box, ArrowRight, Github, Code, Layout, Hub, Grid } from "lucide-r...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | ... { cn } from "@/lib/utils";
+  8 | ...
+  9 | ... default function LandingPage() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-ssr] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+ GET /themes 500 in 22ms (next.js: 6ms, application-code: 16ms)
+[browser] Uncaught Error: ./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  4 | ... Link from "next/link";
+  5 | ... { motion } from "framer-motion";
+> 6 | ... { Terminal, Sparkles, Box, ArrowRight, Github, Code, Layout, Hub, Grid } from "lucide-r...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | ... { cn } from "@/lib/utils";
+  8 | ...
+  9 | ... default function LandingPage() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-client] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+
+    at <unknown> (Error: ./src/app/page.tsx:6:1)
+    at <unknown> (Error: (./src/app/page.tsx:6:1)
+[browser] ./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  4 | ... Link from "next/link";
+  5 | ... { motion } from "framer-motion";
+> 6 | ... { Terminal, Sparkles, Box, ArrowRight, Github, Code, Layout, Hub, Grid } from "lucide-r...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | ... { cn } from "@/lib/utils";
+  8 | ...
+  9 | ... default function LandingPage() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-client] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+[browser] ./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  4 | ... Link from "next/link";
+  5 | ... { motion } from "framer-motion";
+> 6 | ... { Terminal, Sparkles, Box, ArrowRight, Github, Code, Layout, Hub, Grid } from "lucide-r...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | ... { cn } from "@/lib/utils";
+  8 | ...
+  9 | ... default function LandingPage() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-ssr] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+[browser] ./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  4 | ... Link from "next/link";
+  5 | ... { motion } from "framer-motion";
+> 6 | ... { Terminal, Sparkles, Box, ArrowRight, Github, Code, Layout, Hub, Grid } from "lucide-r...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | ... { cn } from "@/lib/utils";
+  8 | ...
+  9 | ... default function LandingPage() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-client] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+[browser] ./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  4 | ... Link from "next/link";
+  5 | ... { motion } from "framer-motion";
+> 6 | ... { Terminal, Sparkles, Box, ArrowRight, Github, Code, Layout, Hub, Grid } from "lucide-r...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | ... { cn } from "@/lib/utils";
+  8 | ...
+  9 | ... default function LandingPage() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-ssr] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+ GET /forge 500 in 22ms (next.js: 6ms, application-code: 15ms)
+[browser] Uncaught Error: ./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  4 | ... Link from "next/link";
+  5 | ... { motion } from "framer-motion";
+> 6 | ... { Terminal, Sparkles, Box, ArrowRight, Github, Code, Layout, Hub, Grid } from "lucide-r...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | ... { cn } from "@/lib/utils";
+  8 | ...
+  9 | ... default function LandingPage() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-client] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+
+    at <unknown> (Error: ./src/app/page.tsx:6:1)
+    at <unknown> (Error: (./src/app/page.tsx:6:1)
+[browser] ./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  4 | ... Link from "next/link";
+  5 | ... { motion } from "framer-motion";
+> 6 | ... { Terminal, Sparkles, Box, ArrowRight, Github, Code, Layout, Hub, Grid } from "lucide-r...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | ... { cn } from "@/lib/utils";
+  8 | ...
+  9 | ... default function LandingPage() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-client] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+[browser] ./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  4 | ... Link from "next/link";
+  5 | ... { motion } from "framer-motion";
+> 6 | ... { Terminal, Sparkles, Box, ArrowRight, Github, Code, Layout, Hub, Grid } from "lucide-r...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | ... { cn } from "@/lib/utils";
+  8 | ...
+  9 | ... default function LandingPage() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-ssr] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+[browser] ./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  4 | ... Link from "next/link";
+  5 | ... { motion } from "framer-motion";
+> 6 | ... { Terminal, Sparkles, Box, ArrowRight, Github, Code, Layout, Hub, Grid } from "lucide-r...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | ... { cn } from "@/lib/utils";
+  8 | ...
+  9 | ... default function LandingPage() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-client] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+[browser] ./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  4 | ... Link from "next/link";
+  5 | ... { motion } from "framer-motion";
+> 6 | ... { Terminal, Sparkles, Box, ArrowRight, Github, Code, Layout, Hub, Grid } from "lucide-r...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | ... { cn } from "@/lib/utils";
+  8 | ...
+  9 | ... default function LandingPage() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-ssr] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+ GET /sync 500 in 18ms (next.js: 7ms, application-code: 11ms)
+[browser] Uncaught Error: ./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  4 | ... Link from "next/link";
+  5 | ... { motion } from "framer-motion";
+> 6 | ... { Terminal, Sparkles, Box, ArrowRight, Github, Code, Layout, Hub, Grid } from "lucide-r...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | ... { cn } from "@/lib/utils";
+  8 | ...
+  9 | ... default function LandingPage() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-client] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+
+    at <unknown> (Error: ./src/app/page.tsx:6:1)
+    at <unknown> (Error: (./src/app/page.tsx:6:1)
+[browser] ./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  4 | ... Link from "next/link";
+  5 | ... { motion } from "framer-motion";
+> 6 | ... { Terminal, Sparkles, Box, ArrowRight, Github, Code, Layout, Hub, Grid } from "lucide-r...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | ... { cn } from "@/lib/utils";
+  8 | ...
+  9 | ... default function LandingPage() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-client] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+[browser] ./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  4 | ... Link from "next/link";
+  5 | ... { motion } from "framer-motion";
+> 6 | ... { Terminal, Sparkles, Box, ArrowRight, Github, Code, Layout, Hub, Grid } from "lucide-r...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | ... { cn } from "@/lib/utils";
+  8 | ...
+  9 | ... default function LandingPage() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-ssr] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+[browser] ./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  4 | ... Link from "next/link";
+  5 | ... { motion } from "framer-motion";
+> 6 | ... { Terminal, Sparkles, Box, ArrowRight, Github, Code, Layout, Hub, Grid } from "lucide-r...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | ... { cn } from "@/lib/utils";
+  8 | ...
+  9 | ... default function LandingPage() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-client] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+[browser] ./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  4 | ... Link from "next/link";
+  5 | ... { motion } from "framer-motion";
+> 6 | ... { Terminal, Sparkles, Box, ArrowRight, Github, Code, Layout, Hub, Grid } from "lucide-r...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | ... { cn } from "@/lib/utils";
+  8 | ...
+  9 | ... default function LandingPage() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-ssr] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+⨯ ./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  [90m4 |[0m ...[36mrom[0m [32m"next/link"[0m;
+  [90m5 |[0m ...on } [36mfrom[0m [32m"framer-motion"[0m;
+[31m[1m>[0m [90m6 |[0m ...[33minal[0m, [33mSparkles[0m, [33mBox[0m, [33mArrowRight[0m, [33mGithub[0m [36mas[0m [33mGitHubIcon[0m, [33mCode[0m, [33mLayout[0m, [33mHub[0m, [33mGrid[0m } [36mfrom[0m [32m"l...[0m
+  [90m  |[0m    [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m7 |[0m ... [36mfrom[0m [32m"@/lib/utils"[0m;
+  [90m8 |[0m ...
+  [90m9 |[0m ...[36mt[0m [36mfunction[0m [33mLandingPage[0m() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-client] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+
+
+./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  [90m4 |[0m ...[36mrom[0m [32m"next/link"[0m;
+  [90m5 |[0m ...on } [36mfrom[0m [32m"framer-motion"[0m;
+[31m[1m>[0m [90m6 |[0m ...[33minal[0m, [33mSparkles[0m, [33mBox[0m, [33mArrowRight[0m, [33mGithub[0m [36mas[0m [33mGitHubIcon[0m, [33mCode[0m, [33mLayout[0m, [33mHub[0m, [33mGrid[0m } [36mfrom[0m [32m"l...[0m
+  [90m  |[0m    [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m7 |[0m ... [36mfrom[0m [32m"@/lib/utils"[0m;
+  [90m8 |[0m ...
+  [90m9 |[0m ...[36mt[0m [36mfunction[0m [33mLandingPage[0m() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-ssr] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+
+ GET / 500 in 22ms (next.js: 10ms, application-code: 12ms)
+[browser] Uncaught Error: ./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  4 | ...rom "next/link";
+  5 | ...on } from "framer-motion";
+> 6 | ...inal, Sparkles, Box, ArrowRight, Github as GitHubIcon, Code, Layout, Hub, Grid } from "l...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | ... from "@/lib/utils";
+  8 | ...
+  9 | ...t function LandingPage() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-client] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+
+    at <unknown> (Error: ./src/app/page.tsx:6:1)
+    at <unknown> (Error: (./src/app/page.tsx:6:1)
+[browser] ./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  4 | ...rom "next/link";
+  5 | ...on } from "framer-motion";
+> 6 | ...inal, Sparkles, Box, ArrowRight, Github as GitHubIcon, Code, Layout, Hub, Grid } from "l...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | ... from "@/lib/utils";
+  8 | ...
+  9 | ...t function LandingPage() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-client] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+[browser] ./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  4 | ...rom "next/link";
+  5 | ...on } from "framer-motion";
+> 6 | ...inal, Sparkles, Box, ArrowRight, Github as GitHubIcon, Code, Layout, Hub, Grid } from "l...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | ... from "@/lib/utils";
+  8 | ...
+  9 | ...t function LandingPage() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-ssr] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+[browser] ./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  4 | ...rom "next/link";
+  5 | ...on } from "framer-motion";
+> 6 | ...inal, Sparkles, Box, ArrowRight, Github as GitHubIcon, Code, Layout, Hub, Grid } from "l...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | ... from "@/lib/utils";
+  8 | ...
+  9 | ...t function LandingPage() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-client] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+[browser] ./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  4 | ...rom "next/link";
+  5 | ...on } from "framer-motion";
+> 6 | ...inal, Sparkles, Box, ArrowRight, Github as GitHubIcon, Code, Layout, Hub, Grid } from "l...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | ... from "@/lib/utils";
+  8 | ...
+  9 | ...t function LandingPage() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-ssr] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+ GET /registry 500 in 20ms (next.js: 5ms, application-code: 15ms)
+[browser] Uncaught Error: ./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  4 | ...rom "next/link";
+  5 | ...on } from "framer-motion";
+> 6 | ...inal, Sparkles, Box, ArrowRight, Github as GitHubIcon, Code, Layout, Hub, Grid } from "l...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | ... from "@/lib/utils";
+  8 | ...
+  9 | ...t function LandingPage() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-client] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+
+    at <unknown> (Error: ./src/app/page.tsx:6:1)
+    at <unknown> (Error: (./src/app/page.tsx:6:1)
+[browser] ./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  4 | ...rom "next/link";
+  5 | ...on } from "framer-motion";
+> 6 | ...inal, Sparkles, Box, ArrowRight, Github as GitHubIcon, Code, Layout, Hub, Grid } from "l...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | ... from "@/lib/utils";
+  8 | ...
+  9 | ...t function LandingPage() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-client] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+[browser] ./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  4 | ...rom "next/link";
+  5 | ...on } from "framer-motion";
+> 6 | ...inal, Sparkles, Box, ArrowRight, Github as GitHubIcon, Code, Layout, Hub, Grid } from "l...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | ... from "@/lib/utils";
+  8 | ...
+  9 | ...t function LandingPage() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-ssr] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+[browser] ./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  4 | ...rom "next/link";
+  5 | ...on } from "framer-motion";
+> 6 | ...inal, Sparkles, Box, ArrowRight, Github as GitHubIcon, Code, Layout, Hub, Grid } from "l...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | ... from "@/lib/utils";
+  8 | ...
+  9 | ...t function LandingPage() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-client] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+[browser] ./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  4 | ...rom "next/link";
+  5 | ...on } from "framer-motion";
+> 6 | ...inal, Sparkles, Box, ArrowRight, Github as GitHubIcon, Code, Layout, Hub, Grid } from "l...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | ... from "@/lib/utils";
+  8 | ...
+  9 | ...t function LandingPage() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-ssr] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+ GET /workbench?id=15 500 in 20ms (next.js: 5ms, application-code: 15ms)
+[browser] Uncaught Error: ./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  4 | ...rom "next/link";
+  5 | ...on } from "framer-motion";
+> 6 | ...inal, Sparkles, Box, ArrowRight, Github as GitHubIcon, Code, Layout, Hub, Grid } from "l...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | ... from "@/lib/utils";
+  8 | ...
+  9 | ...t function LandingPage() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-client] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+
+    at <unknown> (Error: ./src/app/page.tsx:6:1)
+    at <unknown> (Error: (./src/app/page.tsx:6:1)
+[browser] ./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  4 | ...rom "next/link";
+  5 | ...on } from "framer-motion";
+> 6 | ...inal, Sparkles, Box, ArrowRight, Github as GitHubIcon, Code, Layout, Hub, Grid } from "l...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | ... from "@/lib/utils";
+  8 | ...
+  9 | ...t function LandingPage() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-client] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+[browser] ./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  4 | ...rom "next/link";
+  5 | ...on } from "framer-motion";
+> 6 | ...inal, Sparkles, Box, ArrowRight, Github as GitHubIcon, Code, Layout, Hub, Grid } from "l...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | ... from "@/lib/utils";
+  8 | ...
+  9 | ...t function LandingPage() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-ssr] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+[browser] ./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  4 | ...rom "next/link";
+  5 | ...on } from "framer-motion";
+> 6 | ...inal, Sparkles, Box, ArrowRight, Github as GitHubIcon, Code, Layout, Hub, Grid } from "l...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | ... from "@/lib/utils";
+  8 | ...
+  9 | ...t function LandingPage() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-client] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+[browser] ./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  4 | ...rom "next/link";
+  5 | ...on } from "framer-motion";
+> 6 | ...inal, Sparkles, Box, ArrowRight, Github as GitHubIcon, Code, Layout, Hub, Grid } from "l...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | ... from "@/lib/utils";
+  8 | ...
+  9 | ...t function LandingPage() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-ssr] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+ GET /themes 500 in 22ms (next.js: 9ms, application-code: 13ms)
+[browser] Uncaught Error: ./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  4 | ...rom "next/link";
+  5 | ...on } from "framer-motion";
+> 6 | ...inal, Sparkles, Box, ArrowRight, Github as GitHubIcon, Code, Layout, Hub, Grid } from "l...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | ... from "@/lib/utils";
+  8 | ...
+  9 | ...t function LandingPage() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-client] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+
+    at <unknown> (Error: ./src/app/page.tsx:6:1)
+    at <unknown> (Error: (./src/app/page.tsx:6:1)
+[browser] ./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  4 | ...rom "next/link";
+  5 | ...on } from "framer-motion";
+> 6 | ...inal, Sparkles, Box, ArrowRight, Github as GitHubIcon, Code, Layout, Hub, Grid } from "l...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | ... from "@/lib/utils";
+  8 | ...
+  9 | ...t function LandingPage() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-client] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+[browser] ./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  4 | ...rom "next/link";
+  5 | ...on } from "framer-motion";
+> 6 | ...inal, Sparkles, Box, ArrowRight, Github as GitHubIcon, Code, Layout, Hub, Grid } from "l...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | ... from "@/lib/utils";
+  8 | ...
+  9 | ...t function LandingPage() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-ssr] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+[browser] ./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  4 | ...rom "next/link";
+  5 | ...on } from "framer-motion";
+> 6 | ...inal, Sparkles, Box, ArrowRight, Github as GitHubIcon, Code, Layout, Hub, Grid } from "l...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | ... from "@/lib/utils";
+  8 | ...
+  9 | ...t function LandingPage() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-client] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+[browser] ./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  4 | ...rom "next/link";
+  5 | ...on } from "framer-motion";
+> 6 | ...inal, Sparkles, Box, ArrowRight, Github as GitHubIcon, Code, Layout, Hub, Grid } from "l...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | ... from "@/lib/utils";
+  8 | ...
+  9 | ...t function LandingPage() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-ssr] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+ GET /forge 500 in 17ms (next.js: 6ms, application-code: 11ms)
+[browser] Uncaught Error: ./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  4 | ...rom "next/link";
+  5 | ...on } from "framer-motion";
+> 6 | ...inal, Sparkles, Box, ArrowRight, Github as GitHubIcon, Code, Layout, Hub, Grid } from "l...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | ... from "@/lib/utils";
+  8 | ...
+  9 | ...t function LandingPage() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-client] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+
+    at <unknown> (Error: ./src/app/page.tsx:6:1)
+    at <unknown> (Error: (./src/app/page.tsx:6:1)
+[browser] ./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  4 | ...rom "next/link";
+  5 | ...on } from "framer-motion";
+> 6 | ...inal, Sparkles, Box, ArrowRight, Github as GitHubIcon, Code, Layout, Hub, Grid } from "l...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | ... from "@/lib/utils";
+  8 | ...
+  9 | ...t function LandingPage() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-client] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+[browser] ./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  4 | ...rom "next/link";
+  5 | ...on } from "framer-motion";
+> 6 | ...inal, Sparkles, Box, ArrowRight, Github as GitHubIcon, Code, Layout, Hub, Grid } from "l...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | ... from "@/lib/utils";
+  8 | ...
+  9 | ...t function LandingPage() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-ssr] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+[browser] ./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  4 | ...rom "next/link";
+  5 | ...on } from "framer-motion";
+> 6 | ...inal, Sparkles, Box, ArrowRight, Github as GitHubIcon, Code, Layout, Hub, Grid } from "l...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | ... from "@/lib/utils";
+  8 | ...
+  9 | ...t function LandingPage() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-client] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+[browser] ./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  4 | ...rom "next/link";
+  5 | ...on } from "framer-motion";
+> 6 | ...inal, Sparkles, Box, ArrowRight, Github as GitHubIcon, Code, Layout, Hub, Grid } from "l...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | ... from "@/lib/utils";
+  8 | ...
+  9 | ...t function LandingPage() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-ssr] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+ GET /sync 500 in 17ms (next.js: 5ms, application-code: 12ms)
+[browser] Uncaught Error: ./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  4 | ...rom "next/link";
+  5 | ...on } from "framer-motion";
+> 6 | ...inal, Sparkles, Box, ArrowRight, Github as GitHubIcon, Code, Layout, Hub, Grid } from "l...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | ... from "@/lib/utils";
+  8 | ...
+  9 | ...t function LandingPage() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-client] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+
+
+    at <unknown> (Error: ./src/app/page.tsx:6:1)
+    at <unknown> (Error: (./src/app/page.tsx:6:1)
+[browser] ./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  4 | ...rom "next/link";
+  5 | ...on } from "framer-motion";
+> 6 | ...inal, Sparkles, Box, ArrowRight, Github as GitHubIcon, Code, Layout, Hub, Grid } from "l...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | ... from "@/lib/utils";
+  8 | ...
+  9 | ...t function LandingPage() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-client] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+[browser] ./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  4 | ...rom "next/link";
+  5 | ...on } from "framer-motion";
+> 6 | ...inal, Sparkles, Box, ArrowRight, Github as GitHubIcon, Code, Layout, Hub, Grid } from "l...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | ... from "@/lib/utils";
+  8 | ...
+  9 | ...t function LandingPage() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-ssr] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+[browser] ./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  4 | ...rom "next/link";
+  5 | ...on } from "framer-motion";
+> 6 | ...inal, Sparkles, Box, ArrowRight, Github as GitHubIcon, Code, Layout, Hub, Grid } from "l...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | ... from "@/lib/utils";
+  8 | ...
+  9 | ...t function LandingPage() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-client] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+[browser] ./src/app/page.tsx:6:1
+Export Github doesn't exist in target module
+  4 | ...rom "next/link";
+  5 | ...on } from "framer-motion";
+> 6 | ...inal, Sparkles, Box, ArrowRight, Github as GitHubIcon, Code, Layout, Hub, Grid } from "l...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 | ... from "@/lib/utils";
+  8 | ...
+  9 | ...t function LandingPage() {
+
+The export Github was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-ssr] (ecmascript).
+Did you mean to import Gift?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/page.tsx [Client Component Browser]
+    ./src/app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/page.tsx [Client Component SSR]
+    ./src/app/page.tsx [Server Component]
+✓ Compiled in 363ms
+ GET / 200 in 413ms (next.js: 149ms, application-code: 264ms)
+ GET /registry 404 in 192ms (next.js: 63ms, application-code: 129ms)
+ GET /workbench?id=15 404 in 50ms (next.js: 3ms, application-code: 46ms)
+ GET /themes 404 in 54ms (next.js: 4ms, application-code: 50ms)
+ GET /forge 404 in 51ms (next.js: 4ms, application-code: 47ms)
+ GET /sync 404 in 58ms (next.js: 4ms, application-code: 54ms)
+ GET / 200 in 74ms (next.js: 5ms, application-code: 69ms)
+ GET / 200 in 73ms (next.js: 3ms, application-code: 70ms)
+ GET /registry 404 in 66ms (next.js: 6ms, application-code: 60ms)
+ GET /registry 404 in 271ms (next.js: 126ms, application-code: 145ms)
+ GET / 200 in 387ms (next.js: 127ms, application-code: 260ms)
+ GET /registry 200 in 814ms (next.js: 662ms, application-code: 152ms)
+ GET /workbench 200 in 764ms (next.js: 628ms, application-code: 136ms)
+ GET /themes 200 in 1709ms (next.js: 1584ms, application-code: 125ms)
+ GET /forge 200 in 1201ms (next.js: 1019ms, application-code: 182ms)
+⨯ ReferenceError: Box is not defined
+    at DocsPage (src/app/docs/page.tsx:70:22)
+  68 |               <div className="flex items-center gap-4 mb-6">
+  69 |                  <div className="w-12 h-12 rounded-xl bg-blue-600/10 border border-blue-60...
+> 70 |                     <Box size={24} />
+     |                      ^
+  71 |                  </div>
+  72 |                  <div>
+  73 |                     <div className="text-lg font-black tracking-tighter">Button</div> {
+  digest: '3656897010'
+}
+ GET /docs 500 in 1002ms (next.js: 760ms, application-code: 242ms)
+[browser] Uncaught ReferenceError: Box is not defined
+    at DocsPage (src/app/docs/page.tsx:70:22)
+  68 |               <div className="flex items-center gap-4 mb-6">
+  69 |                  <div className="w-12 h-12 rounded-xl bg-blue-600/10 border border-blue-60...
+> 70 |                     <Box size={24} />
+     |                      ^
+  71 |                  </div>
+  72 |                  <div>
+  73 |                     <div className="text-lg font-black tracking-tighter">Button</div>
+ GET /sync 200 in 1111ms (next.js: 942ms, application-code: 169ms)
