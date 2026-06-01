@@ -1,10 +1,15 @@
 from django.db import DatabaseError
 from django.http import Http404
-from rest_framework import viewsets
+from rest_framework import viewsets, generics
 from rest_framework.response import Response
 
-from core.api.serializers import CategorySerializer, ComponentDetailSerializer, ComponentSerializer
-from core.models import Category, Component
+from core.api.serializers import (
+    CategorySerializer,
+    ComponentDetailSerializer,
+    ComponentSerializer,
+    ComponentRegistrySerializer
+)
+from core.models import Category, Component, ComponentRegistry
 from core.registry_data import load_registry_components
 
 
@@ -51,3 +56,15 @@ class ComponentViewSet(RegistryFallbackMixin, viewsets.ReadOnlyModelViewSet):
             if component is None:
                 raise Http404
             return Response(component)
+
+class RegistryDetailView(generics.RetrieveAPIView):
+    queryset = ComponentRegistry.objects.all()
+    serializer_class = ComponentRegistrySerializer
+    lookup_field = 'name'
+
+    def get_object(self):
+        name = self.kwargs.get('name', '').lower()
+        try:
+            return ComponentRegistry.objects.get(name=name)
+        except ComponentRegistry.DoesNotExist as e:
+            raise Http404(f"Component '{name}' not found in registry.") from e

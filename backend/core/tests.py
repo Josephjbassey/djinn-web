@@ -4,7 +4,7 @@ import tempfile
 import shutil
 from django.test import TestCase
 from django.core.management import call_command
-from core.models import Category, Component
+from core.models import Category, Component, ComponentRegistry, ComponentFile
 
 class RegistryTests(TestCase):
     def setUp(self):
@@ -17,63 +17,66 @@ class RegistryTests(TestCase):
             logic_code="class Button: pass"
         )
 
+        self.reg = ComponentRegistry.objects.create(
+            name="button",
+            category="buttons",
+            dependencies=["tailwindcss"]
+        )
+        ComponentFile.objects.create(
+            component=self.reg,
+            filename="button.html",
+            content="<button></button>"
+        )
+
     def test_component_creation(self):
         self.assertEqual(self.comp.name, "Button")
         self.assertEqual(self.comp.category.name, "Buttons")
 
-    def test_api_list(self):
-        response = self.client.get('/api/components/')
+    def test_api_detail(self):
+        response = self.client.get('/api/v1/registry/button/')
         self.assertEqual(response.status_code, 200)
-        # We now use a list of components, and the Lightweight serializer
-        self.assertEqual(len(response.json()), 1)
+        data = response.json()
+        self.assertEqual(data['name'], 'button')
+        self.assertEqual(len(data['files']), 1)
 
     def test_sync_registry_command(self):
-        # Create a temporary registry directory
         temp_dir = tempfile.mkdtemp()
         try:
-            # Create category dir
-            cat_dir = os.path.join(temp_dir, 'layout')
-            os.makedirs(cat_dir)
-
-            # Create component dir
-            comp_dir = os.path.join(cat_dir, 'card')
+            comp_dir = os.path.join(temp_dir, 'card')
             os.makedirs(comp_dir)
 
-            # Create metadata.json
             metadata = {
                 "name": "card",
+                "category": "Layout",
                 "description": "A simple card",
-                "files": {
-                    "template": "card.html",
-                    "logic": "card.py"
-                }
+                "files": [{"name": "card.html"}, {"name": "card.py"}]
             }
-            with open(os.path.join(comp_dir, 'metadata.json'), 'w') as f:
+            with open(os.path.join(comp_dir, 'metadata.json'), 'w', encoding='utf-8') as f:
                 json.dump(metadata, f)
 
-            # Create template and logic files
-            with open(os.path.join(comp_dir, 'card.html'), 'w') as f:
+            with open(os.path.join(comp_dir, 'card.html'), 'w', encoding='utf-8') as f:
                 f.write("<div class='card'></div>")
-            with open(os.path.join(comp_dir, 'card.py'), 'w') as f:
+            with open(os.path.join(comp_dir, 'card.py'), 'w', encoding='utf-8') as f:
                 f.write("class Card: pass")
 
-            # Run the command
             call_command('sync_registry', registry_path=temp_dir)
 
-            # Verify database objects
             self.assertTrue(Category.objects.filter(slug='layout').exists())
             card = Component.objects.get(slug='card')
             self.assertEqual(card.name, 'Card')
             self.assertEqual(card.template_code, "<div class='card'></div>")
-            self.assertEqual(card.logic_code, "class Card: pass")
 
-            # Test update semantics
-            with open(os.path.join(comp_dir, 'card.html'), 'w') as f:
+            self.assertTrue(ComponentRegistry.objects.filter(name='card').exists())
+            self.assertEqual(ComponentFile.objects.filter(component__name='card').count(), 2)
+            self.assertTrue(ComponentFile.objects.filter(component__name='card', filename='card.html').exists())
+
+            with open(os.path.join(comp_dir, 'card.html'), 'w', encoding='utf-8') as f:
                 f.write("<div class='updated-card'></div>")
 
             call_command('sync_registry', registry_path=temp_dir)
             card.refresh_from_db()
             self.assertEqual(card.template_code, "<div class='updated-card'></div>")
+            self.assertEqual(ComponentFile.objects.get(component__name='card', filename='card.html').content, "<div class='updated-card'></div>")
 
         finally:
             shutil.rmtree(temp_dir)

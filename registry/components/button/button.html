@@ -1,4 +1,5 @@
 <button
+  type="{{ type }}"
   class="inline-flex items-center justify-center rounded-[var(--radius)] text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none active:scale-95
   {% if variant == 'primary' %} bg-[var(--primary)] text-white hover:opacity-90 shadow-[0_0_20px_-5px_var(--primary)]
   {% elif variant == 'secondary' %} bg-slate-800 text-slate-100 hover:bg-slate-700
@@ -8,11 +9,13 @@
   {% else %} bg-[var(--primary)] text-white hover:opacity-90
   {% endif %}
   {% if size == 'sm' %} h-8 px-3 text-xs
+  {% elif size == 'md' %} h-10 py-2.5 px-6
   {% elif size == 'lg' %} h-12 px-10 text-base
   {% else %} h-10 py-2.5 px-6
   {% endif %}
   {{ class }}"
   {% if disabled %}disabled{% endif %}
+  {{ extra_attrs|safe }}
 >
   {{ slot }}
 </button>
