@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useId } from "react";
 import * as ToggleGroup from "@radix-ui/react-toggle-group";
 import { cn } from "@/lib/utils";
 import { Component, CustomStyles } from "@/types";
@@ -25,6 +25,7 @@ export const PropertyInspector: React.FC<InspectorProps> = ({
   customStyles,
   onStylesChange,
 }) => {
+  const baseId = useId();
   const accessibility = component?.metadata?.accessibility || {
     keyboard_supported: true,
     role: component?.slug?.includes("input") ? "textbox" : "button"
@@ -34,9 +35,6 @@ export const PropertyInspector: React.FC<InspectorProps> = ({
 
   const handleExport = () => {
     if (!component) return;
-
-    // Simple export: apply custom styles as inline style overrides in the template for demo purposes
-    // or just export the raw files.
     const blob = new Blob([component.template_code], { type: "text/html" });
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
@@ -103,13 +101,14 @@ export const PropertyInspector: React.FC<InspectorProps> = ({
       <div className="border-t border-border pt-6 space-y-6">
         <div className="space-y-3">
           <div className="flex justify-between items-center">
-              <label className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+              <label htmlFor={`${baseId}-primary-color`} className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground cursor-pointer">
                 Primary Color
               </label>
               <span className="text-[10px] font-mono text-accent">{customStyles.primaryColor}</span>
           </div>
           <div className="flex gap-2 items-center">
             <input
+              id={`${baseId}-primary-color`}
               type="color"
               value={customStyles.primaryColor}
               onChange={(e) => onStylesChange({ primaryColor: e.target.value })}
@@ -119,19 +118,20 @@ export const PropertyInspector: React.FC<InspectorProps> = ({
               type="text"
               value={customStyles.primaryColor}
               onChange={(e) => onStylesChange({ primaryColor: e.target.value })}
-              className="flex-1 bg-slate-900 border border-border rounded px-2 py-1 text-[10px] font-mono focus:outline-none focus:border-accent"
+              className="flex-1 bg-slate-900 border border-border rounded px-2 py-1 text-[10px] font-mono focus:outline-hidden focus:border-accent"
             />
           </div>
         </div>
 
         <div className="space-y-3">
           <div className="flex justify-between items-center">
-              <label className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+              <label htmlFor={`${baseId}-border-radius`} className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground cursor-pointer">
                 Border Radius
               </label>
               <span className="text-[10px] font-mono text-accent">{customStyles.borderRadius}px</span>
           </div>
           <input
+            id={`${baseId}-border-radius`}
             type="range"
             min="0"
             max="24"
@@ -142,13 +142,14 @@ export const PropertyInspector: React.FC<InspectorProps> = ({
         </div>
 
         <div className="space-y-3">
-          <label className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+          <label htmlFor={`${baseId}-animation`} className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground cursor-pointer">
             Animation
           </label>
           <select
+            id={`${baseId}-animation`}
             value={customStyles.animation}
-            onChange={(e) => onStylesChange({ animation: e.target.value })}
-            className="w-full bg-slate-900 border border-border rounded-md px-3 py-1.5 text-xs focus:outline-none focus:border-accent appearance-none cursor-pointer"
+            onChange={(e) => onStylesChange({ animation: e.target.value as any })}
+            className="w-full bg-slate-900 border border-border rounded-md px-3 py-1.5 text-xs focus:outline-hidden focus:border-accent appearance-none cursor-pointer"
           >
             <option value="none">None</option>
             <option value="pulse">Pulse</option>

@@ -53,7 +53,7 @@ export default function DocsPage() {
                 </div>
                 <h3 className="text-xl font-bold">CLI (The Builder)</h3>
                 <p className="text-sm text-slate-400 leading-relaxed">
-                    The bridge to your local environment. Use `djinn add <component>` to fetch source code directly into your Django project's `components/ui` directory.
+                    The bridge to your local environment. Use <code>djinn add &lt;component&gt;</code> to fetch source code directly into your Django project's <code>components/ui</code> directory.
                 </p>
             </div>
           </section>
@@ -66,7 +66,7 @@ export default function DocsPage() {
              <ol className="space-y-4">
                 <li className="flex gap-4">
                     <span className="flex-none w-6 h-6 rounded-full bg-blue-600 text-white text-[10px] font-black flex items-center justify-center">1</span>
-                    <p className="text-sm text-slate-300"><span className="text-white font-bold">Design:</span> Use the Theme Editor to export your `globals.css` or Tailwind config.</p>
+                    <p className="text-sm text-slate-300"><span className="text-white font-bold">Design:</span> Use the Theme Editor to export your <code>globals.css</code> or Tailwind config.</p>
                 </li>
                 <li className="flex gap-4">
                     <span className="flex-none w-6 h-6 rounded-full bg-blue-600 text-white text-[10px] font-black flex items-center justify-center">2</span>
@@ -74,13 +74,12 @@ export default function DocsPage() {
                 </li>
                 <li className="flex gap-4">
                     <span className="flex-none w-6 h-6 rounded-full bg-blue-600 text-white text-[10px] font-black flex items-center justify-center">3</span>
-                    <p className="text-sm text-slate-300"><span className="text-white font-bold">Install:</span> Run `djinn add button` in your terminal to own the code locally.</p>
+                    <p className="text-sm text-slate-300"><span className="text-white font-bold">Install:</span> Run <code>djinn add button</code> in your terminal to own the code locally.</p>
                 </li>
              </ol>
           </section>
         </div>
       }
-      rightSidebar={null}
     />
   );
 }

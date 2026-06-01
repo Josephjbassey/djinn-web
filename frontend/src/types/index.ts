@@ -16,8 +16,10 @@ export interface Component {
   metadata: ComponentMetadata;
 }
 
+export type AnimationType = 'pulse' | 'bounce' | 'spin' | 'ping' | 'none';
+
 export interface CustomStyles {
   primaryColor: string;
   borderRadius: number;
-  animation: string;
+  animation: AnimationType;
 }

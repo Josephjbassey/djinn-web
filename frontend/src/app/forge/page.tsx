@@ -73,7 +73,7 @@ export default function ForgePage() {
              <div className="max-w-4xl mx-auto relative">
                 <textarea
                   placeholder="Describe a component or ask for a modification..."
-                  className="w-full bg-slate-900 border border-white/10 rounded-2xl p-6 pr-16 text-sm focus:outline-none focus:border-blue-600/50 transition-all min-h-[120px] resize-none"
+                  className="w-full bg-slate-900 border border-white/10 rounded-2xl p-6 pr-16 text-sm focus:outline-hidden focus:border-blue-600/50 transition-all min-h-[120px] resize-none"
                 />
                 <button className="absolute right-4 bottom-4 w-10 h-10 bg-blue-600 text-white rounded-xl flex items-center justify-center hover:bg-blue-500 transition-all">
                    <Send size={18} />

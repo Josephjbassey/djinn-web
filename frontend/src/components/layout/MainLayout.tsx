@@ -9,8 +9,8 @@ import { cn } from "@/lib/utils";
 interface LayoutProps {
   leftSidebar: React.ReactNode;
   canvas: React.ReactNode;
-  rightSidebar: React.ReactNode;
-  bottomDrawer: React.ReactNode;
+  rightSidebar?: React.ReactNode;
+  bottomDrawer?: React.ReactNode;
 }
 
 export const MainLayout: React.FC<LayoutProps> = ({
@@ -74,7 +74,7 @@ export const MainLayout: React.FC<LayoutProps> = ({
                 type="text"
                 placeholder="Quick search..."
                 aria-label="Quick search"
-                className="w-64 bg-slate-900/50 border border-border rounded-lg py-2 pl-9 pr-4 text-[10px] focus:outline-none focus:ring-1 focus:ring-accent transition-all"
+                className="w-64 bg-slate-900/50 border border-border rounded-lg py-2 pl-9 pr-4 text-[10px] focus:outline-hidden focus:ring-1 focus:ring-accent transition-all"
               />
            </div>
            <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-[10px] font-bold text-white">JD</div>
@@ -82,7 +82,7 @@ export const MainLayout: React.FC<LayoutProps> = ({
       </header>
 
       <div className="flex flex-1 overflow-hidden">
-        <aside className="w-[280px] border-r border-border bg-slate-950/50">
+        <aside className="w-[280px] border-r border-border bg-slate-950/50 flex-none">
           {leftSidebar}
         </aside>
 
@@ -92,15 +92,17 @@ export const MainLayout: React.FC<LayoutProps> = ({
           </div>
 
           {bottomDrawer && (
-            <footer className="h-80 border-t border-border bg-slate-950">
+            <footer className="h-80 border-t border-border bg-slate-950 flex-none">
               {bottomDrawer}
             </footer>
           )}
         </main>
 
-        <aside className="w-[320px] border-l border-border bg-slate-950/50">
-          {rightSidebar}
-        </aside>
+        {rightSidebar && (
+          <aside className="w-[320px] border-l border-border bg-slate-950/50 flex-none">
+            {rightSidebar}
+          </aside>
+        )}
       </div>
     </div>
   );

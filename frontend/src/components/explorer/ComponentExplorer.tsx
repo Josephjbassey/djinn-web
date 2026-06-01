@@ -64,7 +64,7 @@ export const ComponentExplorer: React.FC<ExplorerProps> = ({ onSelect, selectedI
             type="text"
             placeholder="Search registry..."
             aria-label="Search registry"
-            className="w-full bg-background border border-border rounded-md py-1.5 pl-8 pr-3 text-sm focus:outline-none focus:ring-1 focus:ring-accent"
+            className="w-full bg-background border border-border rounded-md py-1.5 pl-8 pr-3 text-sm focus:outline-hidden focus:ring-1 focus:ring-accent"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />

@@ -18,6 +18,12 @@ export default function ThemesPage() {
   });
   const [radius, setRadius] = useState(8);
   const [exportFormat, setExportFormat] = useState("CSS");
+  const [statusMessage, setStatusMessage] = useState<string | null>(null);
+
+  const showStatus = (msg: string) => {
+    setStatusMessage(msg);
+    setTimeout(() => setStatusMessage(null), 3000);
+  };
 
   const resetTheme = () => {
     setColors({
@@ -31,6 +37,7 @@ export default function ThemesPage() {
       lineHeight: 1.5,
     });
     setRadius(8);
+    showStatus("Theme reset to defaults");
   };
 
   const handleColorChange = (key: keyof typeof colors, value: string) => {
@@ -76,11 +83,12 @@ export default function ThemesPage() {
     link.click();
     document.body.removeChild(link);
     URL.revokeObjectURL(url);
+    showStatus(`Theme exported as ${exportFormat}`);
   };
 
   const handleCopy = () => {
     navigator.clipboard.writeText(getExportContent());
-    alert("Theme tokens copied to clipboard!");
+    showStatus("Theme tokens copied to clipboard!");
   };
 
   return (
@@ -123,6 +131,12 @@ export default function ThemesPage() {
       }
       canvas={
         <div className="p-8 max-w-5xl mx-auto space-y-12">
+          {statusMessage && (
+            <div className="fixed top-20 right-80 z-50 px-4 py-2 bg-blue-600 text-white text-[10px] font-black uppercase tracking-widest rounded-md shadow-xl animate-in fade-in slide-in-from-top-4 duration-300">
+                {statusMessage}
+            </div>
+          )}
+
           <div className="flex items-end justify-between border-b border-white/5 pb-8">
             <div>
               <h1 className="text-4xl font-black tracking-tighter mb-2">Theme Editor</h1>
@@ -136,7 +150,7 @@ export default function ThemesPage() {
                 <RotateCcw size={12} /> Reset
               </button>
               <button
-                onClick={() => alert("Theme configuration saved to project settings.")}
+                onClick={() => showStatus("Theme configuration saved to project settings.")}
                 className="px-4 py-2 bg-blue-600 text-white rounded-md text-[10px] font-black uppercase tracking-widest hover:bg-blue-500 transition-colors flex items-center gap-2 shadow-lg shadow-blue-600/20"
               >
                 <Save size={12} /> Save Changes
@@ -173,13 +187,14 @@ export default function ThemesPage() {
                           type="text"
                           value={token.value}
                           onChange={(e) => handleColorChange(token.key as any, e.target.value)}
-                          className="text-xs font-mono font-bold uppercase bg-transparent border-none focus:outline-none focus:ring-0 p-0"
+                          className="text-xs font-mono font-bold uppercase bg-transparent border-none focus:outline-hidden focus:ring-0 p-0"
                         />
                       </div>
                     </div>
                     <button
                         onClick={() => {
                             navigator.clipboard.writeText(token.value);
+                            showStatus(`Color ${token.value} copied!`);
                         }}
                         className="p-2 text-slate-600 hover:text-white transition-colors"
                     >
@@ -381,9 +396,9 @@ export default function ThemesPage() {
                    Describe a mood or brand style to generate a matching color palette.
                  </p>
                  <div className="space-y-3">
-                    <input type="text" placeholder="e.g. 'Cyberpunk neon night'" className="w-full bg-slate-950 border border-white/5 rounded-lg p-3 text-[10px] focus:outline-none focus:border-blue-500/50" />
+                    <input type="text" placeholder="e.g. 'Cyberpunk neon night'" className="w-full bg-slate-950 border border-white/5 rounded-lg p-3 text-[10px] focus:outline-hidden focus:border-blue-500/50" />
                     <button
-                      onClick={() => alert("AI Theme Generation started... (Demo)")}
+                      onClick={() => showStatus("AI Theme Generation started... (Demo)")}
                       className="w-full py-3 bg-blue-600 text-white rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-blue-500 transition-all shadow-lg shadow-blue-600/20"
                     >
                       Generate Theme
@@ -393,7 +408,7 @@ export default function ThemesPage() {
            </div>
            <div className="p-6 border-t border-white/5 bg-slate-900/30">
               <button
-                onClick={() => alert("Theme published to global registry!")}
+                onClick={() => showStatus("Theme published to global registry!")}
                 className="w-full py-4 bg-blue-600 text-white rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-blue-500 transition-all flex items-center justify-center gap-2 shadow-xl shadow-blue-600/30"
               >
                  <Save size={16} /> Publish Theme
@@ -401,7 +416,6 @@ export default function ThemesPage() {
            </div>
         </div>
       }
-      bottomDrawer={null}
     />
   );
 }

@@ -10,32 +10,37 @@ import { Component, CustomStyles } from "@/types";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE || "http://localhost:8000";
 
+const DEFAULT_CUSTOM_STYLES: CustomStyles = {
+  primaryColor: "#3b82f6",
+  borderRadius: 6,
+  animation: "none"
+};
+
 export default function WorkbenchPage() {
   const [selectedComponentId, setSelectedComponentId] = useState<number | null>(null);
   const [component, setComponent] = useState<Component | null>(null);
   const [variant, setVariant] = useState("primary");
   const [size, setSize] = useState("md");
 
-  const [customStyles, setCustomStyles] = useState<CustomStyles>({
-    primaryColor: "#3b82f6",
-    borderRadius: 6,
-    animation: "none"
-  });
+  const [customStyles, setCustomStyles] = useState<CustomStyles>(DEFAULT_CUSTOM_STYLES);
 
   useEffect(() => {
     if (selectedComponentId) {
       fetch(`${API_BASE}/api/components/${selectedComponentId}/`)
-        .then(res => res.json())
+        .then(res => {
+            if (!res.ok) {
+                throw new Error(`Failed to fetch component: ${res.status} ${res.statusText}`);
+            }
+            return res.json();
+        })
         .then(data => {
             setComponent(data);
-            // Reset custom styles or set defaults based on component
-            setCustomStyles({
-                primaryColor: "#3b82f6",
-                borderRadius: 6,
-                animation: "none"
-            });
+            setCustomStyles({ ...DEFAULT_CUSTOM_STYLES });
         })
-        .catch(err => console.error("Failed to fetch component detail", err));
+        .catch(err => {
+            console.error("Failed to fetch component detail", err);
+            setComponent(null);
+        });
     }
   }, [selectedComponentId]);
 
