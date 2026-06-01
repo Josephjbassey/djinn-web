@@ -2,7 +2,7 @@
 
 import React from "react";
 import { MainLayout } from "@/components/layout/MainLayout";
-import { Sync, Folder, RefreshCw, AlertCircle, CheckCircle2, Terminal } from "lucide-react";
+import { RefreshCw as Sync, Folder, RefreshCw, AlertCircle, CheckCircle2, Terminal } from "lucide-react";
 
 export default function SyncPage() {
   return (

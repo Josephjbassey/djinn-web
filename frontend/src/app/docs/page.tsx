@@ -2,7 +2,7 @@
 
 import React from "react";
 import { MainLayout } from "@/components/layout/MainLayout";
-import { Hub, MenuBook, History, Accessibility, Box, Hub as HubIcon, ZoomIn, ZoomOut, Filter } from "lucide-react";
+import { GitGraph, BookOpen, History, Accessibility, Box, GitGraph as HubIcon, ZoomIn, ZoomOut, Filter } from "lucide-react";
 
 export default function DocsPage() {
   return (

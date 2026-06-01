@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Terminal, Sparkles, Box, ArrowRight, Code, Layout, Hub, Grid } from "lucide-react";
+import { Terminal, Sparkles, Box, ArrowRight, Code, Layout, GitGraph, Grid } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const GitHubIcon = ({ size = 20 }: { size?: number }) => (
