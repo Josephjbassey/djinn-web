@@ -3,6 +3,7 @@ import os
 from django.core.management.base import BaseCommand
 from django.utils.text import slugify
 from django.conf import settings
+from django.db import transaction
 from core.models import Category, Component, ComponentRegistry, ComponentFile
 
 class Command(BaseCommand):
@@ -32,7 +33,7 @@ class Command(BaseCommand):
                 continue
 
             try:
-                with open(metadata_file, 'r') as f:
+                with open(metadata_file, 'r', encoding='utf-8') as f:
                     metadata = json.load(f)
             except Exception as e:
                 self.stdout.write(self.style.ERROR(f'Error reading {metadata_file}: {e}'))
@@ -42,8 +43,7 @@ class Command(BaseCommand):
             category_display_name = metadata.get('category', 'Uncategorized')
             category_slug = slugify(category_display_name)
 
-            # Legacy Sync
-            category, created = Category.objects.get_or_create(
+            category, _ = Category.objects.get_or_create(
                 slug=category_slug,
                 defaults={'name': category_display_name}
             )
@@ -51,15 +51,18 @@ class Command(BaseCommand):
             files_metadata = metadata.get('files', [])
             template_code = ''
             logic_code = ''
-
-            file_contents = [] # To store for v1 registry
+            file_contents = []
 
             if isinstance(files_metadata, list):
                 for file_info in files_metadata:
                     fname = file_info.get('name')
+                    if not fname or not isinstance(fname, str):
+                        self.stdout.write(self.style.WARNING(f'Skipping invalid file entry in {component_name}'))
+                        continue
+
                     fpath = os.path.join(component_path, fname)
                     if os.path.exists(fpath):
-                        with open(fpath, 'r') as f:
+                        with open(fpath, 'r', encoding='utf-8') as f:
                             content = f.read()
                             file_contents.append({'filename': fname, 'content': content})
                             if fname.endswith('.html'):
@@ -67,40 +70,37 @@ class Command(BaseCommand):
                             elif fname.endswith('.py'):
                                 logic_code = content
 
-            # Legacy Component Model
-            Component.objects.update_or_create(
-                slug=slugify(component_name),
-                defaults={
-                    'category': category,
-                    'name': component_name.capitalize(),
-                    'description': metadata.get('description', ''),
-                    'version': metadata.get('version', '1.0.0'),
-                    'metadata': metadata,
-                    'dependencies': metadata.get('dependencies', []),
-                    'accessibility': metadata.get('accessibility', {}),
-                    'interaction_strategy': metadata.get('interaction_strategy', 'static'),
-                    'template_code': template_code,
-                    'logic_code': logic_code,
-                }
-            )
-
-            # V1 Registry Model
-            reg_name = component_name.lower()
-            registry_entry, _ = ComponentRegistry.objects.update_or_create(
-                name=reg_name,
-                defaults={
-                    'category': category_display_name.lower(),
-                    'dependencies': metadata.get('dependencies', []),
-                }
-            )
-
-            # Clear and recreate files for v1 registry
-            ComponentFile.objects.filter(component=registry_entry).delete()
-            for fc in file_contents:
-                ComponentFile.objects.create(
-                    component=registry_entry,
-                    filename=fc['filename'],
-                    content=fc['content']
+            with transaction.atomic():
+                Component.objects.update_or_create(
+                    slug=slugify(component_name),
+                    defaults={
+                        'category': category,
+                        'name': component_name.capitalize(),
+                        'description': metadata.get('description', ''),
+                        'version': metadata.get('version', '1.0.0'),
+                        'metadata': metadata,
+                        'dependencies': metadata.get('dependencies', []),
+                        'accessibility': metadata.get('accessibility', {}),
+                        'interaction_strategy': metadata.get('interaction_strategy', 'static'),
+                        'template_code': template_code,
+                        'logic_code': logic_code,
+                    }
                 )
+
+                reg_name = component_name.lower()
+                registry_entry, _ = ComponentRegistry.objects.update_or_create(
+                    name=reg_name,
+                    defaults={
+                        'category': category_display_name.lower(),
+                        'dependencies': metadata.get('dependencies', []),
+                    }
+                )
+
+                ComponentFile.objects.filter(component=registry_entry).delete()
+                file_instances = [
+                    ComponentFile(component=registry_entry, filename=fc['filename'], content=fc['content'])
+                    for fc in file_contents
+                ]
+                ComponentFile.objects.bulk_create(file_instances)
 
             self.stdout.write(self.style.SUCCESS(f'Synced component: {component_name} in {category.name} (Legacy & V1)'))

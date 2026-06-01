@@ -66,5 +66,5 @@ class RegistryDetailView(generics.RetrieveAPIView):
         name = self.kwargs.get('name', '').lower()
         try:
             return ComponentRegistry.objects.get(name=name)
-        except ComponentRegistry.DoesNotExist:
-            raise Http404
+        except ComponentRegistry.DoesNotExist as e:
+            raise Http404(f"Component '{name}' not found in registry.") from e

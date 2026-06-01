@@ -6,7 +6,6 @@ import { motion } from "framer-motion";
 import { Terminal, Sparkles, Box, ArrowRight, Code, Layout, Hub, Grid } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-// Custom Github Icon since it seems missing from this lucide version
 const GitHubIcon = ({ size = 20 }: { size?: number }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -27,7 +26,6 @@ const GitHubIcon = ({ size = 20 }: { size?: number }) => (
 export default function LandingPage() {
   return (
     <div className="min-h-screen bg-[#0f172a] text-white flex flex-col font-sans">
-      {/* Navigation */}
       <nav className="h-16 border-b border-white/5 flex items-center justify-between px-6 lg:px-12 backdrop-blur-md sticky top-0 z-50 bg-[#0f172a]/80">
         <div className="flex items-center gap-2">
           <div className="w-8 h-8 bg-blue-600 rounded flex items-center justify-center shadow-lg shadow-blue-600/20">
@@ -41,7 +39,7 @@ export default function LandingPage() {
           <Link href="/themes" className="text-xs font-black uppercase tracking-widest text-slate-400 hover:text-white transition-colors">Themes</Link>
         </div>
         <div className="flex items-center gap-4">
-          <Link href="https://github.com" className="p-2 text-slate-400 hover:text-white transition-colors">
+          <Link href="https://github.com/djinn-django/djinn" target="_blank" rel="noopener noreferrer" className="p-2 text-slate-400 hover:text-white transition-colors">
             <GitHubIcon size={20} />
           </Link>
           <Link href="/registry" className="px-5 py-2 bg-blue-600 text-white text-[10px] font-black uppercase tracking-widest rounded-md hover:bg-blue-500 transition-all shadow-xl shadow-blue-600/20">
@@ -51,54 +49,27 @@ export default function LandingPage() {
       </nav>
 
       <main className="flex-1">
-        {/* Hero Section */}
         <section className="py-24 px-6 lg:px-12 max-w-6xl mx-auto text-center flex flex-col items-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="px-3 py-1 bg-blue-600/10 border border-blue-600/30 rounded-full text-[10px] font-black uppercase tracking-[0.2em] text-blue-400 mb-8"
-          >
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="px-3 py-1 bg-blue-600/10 border border-blue-600/30 rounded-full text-[10px] font-black uppercase tracking-[0.2em] text-blue-400 mb-8">
             The shadcn/ui for Django is here
           </motion.div>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-6xl md:text-8xl font-black tracking-tighter mb-8 leading-[0.9]"
-          >
+          <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }} className="text-6xl md:text-8xl font-black tracking-tighter mb-8 leading-[0.9]">
             OWN YOUR UI.<br />
             <span className="text-blue-600">BUILT FOR DJANGO.</span>
           </motion.h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-lg md:text-xl text-slate-400 max-w-2xl mb-12 font-medium"
-          >
+          <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }} className="text-lg md:text-xl text-slate-400 max-w-2xl mb-12 font-medium">
             Djinn is a registry-driven component platform. Copy high-quality source code directly into your project. No abstractions, just clean Django templates and Tailwind CSS.
           </motion.p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="flex flex-col sm:row gap-4 mb-20"
-          >
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.3 }} className="flex flex-col sm:row gap-4 mb-20">
             <Link href="/registry" className="px-10 py-5 bg-blue-600 text-white font-black uppercase tracking-widest text-xs rounded-lg hover:bg-blue-500 transition-all flex items-center gap-3 group shadow-2xl shadow-blue-600/30">
               Browse Components <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
             </Link>
           </motion.div>
 
-          {/* Terminal Animation */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="w-full max-w-3xl rounded-2xl border border-white/5 bg-[#020617] shadow-2xl overflow-hidden text-left"
-          >
+          <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8, delay: 0.4 }} className="w-full max-w-3xl rounded-2xl border border-white/5 bg-[#020617] shadow-2xl overflow-hidden text-left">
             <div className="bg-slate-900/50 px-5 py-3 border-b border-white/5 flex items-center justify-between">
               <div className="flex gap-2">
                 <div className="w-3 h-3 rounded-full bg-red-500/20 border border-red-500/40" />
@@ -115,12 +86,7 @@ export default function LandingPage() {
               <div className="text-emerald-400 font-medium">Successfully installed djinn-cli-1.0.4</div>
               <div className="flex gap-3 pt-3">
                 <span className="text-blue-600 font-bold">$</span>
-                <motion.span
-                  initial={{ width: 0 }}
-                  animate={{ width: "auto" }}
-                  transition={{ duration: 1.5, delay: 1 }}
-                  className="text-white overflow-hidden whitespace-nowrap border-r-2 border-blue-600"
-                >
+                <motion.span initial={{ width: 0 }} animate={{ width: "auto" }} transition={{ duration: 1.5, delay: 1 }} className="text-white overflow-hidden whitespace-nowrap border-r-2 border-blue-600">
                   djinn add button
                 </motion.span>
               </div>
@@ -135,7 +101,6 @@ export default function LandingPage() {
           </motion.div>
         </section>
 
-        {/* Features */}
         <section className="bg-slate-950 py-24 px-6 lg:px-12 border-y border-white/5">
           <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
             <div className="space-y-6">
@@ -172,9 +137,9 @@ export default function LandingPage() {
         </div>
         <p className="text-[10px] text-slate-500 uppercase font-black tracking-[0.3em]">© 2026 Djinn Systems. The Professional Component Registry.</p>
         <div className="flex gap-8">
-          <Link href="#" className="text-slate-400 hover:text-white transition-colors"><GitHubIcon size={20} /></Link>
-          <Link href="#" className="text-slate-400 hover:text-white transition-colors text-[10px] font-black uppercase tracking-widest">Discord</Link>
-          <Link href="#" className="text-slate-400 hover:text-white transition-colors text-[10px] font-black uppercase tracking-widest">Twitter</Link>
+          <Link href="https://github.com/djinn-django/djinn" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors"><GitHubIcon size={20} /></Link>
+          <Link href="https://discord.gg/djinn" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors text-[10px] font-black uppercase tracking-widest">Discord</Link>
+          <Link href="https://x.com/djinn_django" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors text-[10px] font-black uppercase tracking-widest">Twitter</Link>
         </div>
       </footer>
     </div>

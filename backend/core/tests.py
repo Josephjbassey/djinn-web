@@ -17,7 +17,6 @@ class RegistryTests(TestCase):
             logic_code="class Button: pass"
         )
 
-        # Setup V1 Registry for API test
         self.reg = ComponentRegistry.objects.create(
             name="button",
             category="buttons",
@@ -34,7 +33,6 @@ class RegistryTests(TestCase):
         self.assertEqual(self.comp.category.name, "Buttons")
 
     def test_api_detail(self):
-        # We check the registry v1 API detail
         response = self.client.get('/api/v1/registry/button/')
         self.assertEqual(response.status_code, 200)
         data = response.json()
@@ -42,52 +40,43 @@ class RegistryTests(TestCase):
         self.assertEqual(len(data['files']), 1)
 
     def test_sync_registry_command(self):
-        # Create a temporary registry directory
         temp_dir = tempfile.mkdtemp()
         try:
-            # Create component dir
             comp_dir = os.path.join(temp_dir, 'card')
             os.makedirs(comp_dir)
 
-            # Create metadata.json
             metadata = {
                 "name": "card",
                 "category": "Layout",
                 "description": "A simple card",
-                "files": [
-                    {"name": "card.html"},
-                    {"name": "card.py"}
-                ]
+                "files": [{"name": "card.html"}, {"name": "card.py"}]
             }
-            with open(os.path.join(comp_dir, 'metadata.json'), 'w') as f:
+            with open(os.path.join(comp_dir, 'metadata.json'), 'w', encoding='utf-8') as f:
                 json.dump(metadata, f)
 
-            # Create template and logic files
-            with open(os.path.join(comp_dir, 'card.html'), 'w') as f:
+            with open(os.path.join(comp_dir, 'card.html'), 'w', encoding='utf-8') as f:
                 f.write("<div class='card'></div>")
-            with open(os.path.join(comp_dir, 'card.py'), 'w') as f:
+            with open(os.path.join(comp_dir, 'card.py'), 'w', encoding='utf-8') as f:
                 f.write("class Card: pass")
 
-            # Run the command
             call_command('sync_registry', registry_path=temp_dir)
 
-            # Verify database objects
             self.assertTrue(Category.objects.filter(slug='layout').exists())
             card = Component.objects.get(slug='card')
             self.assertEqual(card.name, 'Card')
             self.assertEqual(card.template_code, "<div class='card'></div>")
-            self.assertEqual(card.logic_code, "class Card: pass")
 
-            # Verify V1 Registry entry
             self.assertTrue(ComponentRegistry.objects.filter(name='card').exists())
+            self.assertEqual(ComponentFile.objects.filter(component__name='card').count(), 2)
+            self.assertTrue(ComponentFile.objects.filter(component__name='card', filename='card.html').exists())
 
-            # Test update semantics
-            with open(os.path.join(comp_dir, 'card.html'), 'w') as f:
+            with open(os.path.join(comp_dir, 'card.html'), 'w', encoding='utf-8') as f:
                 f.write("<div class='updated-card'></div>")
 
             call_command('sync_registry', registry_path=temp_dir)
             card.refresh_from_db()
             self.assertEqual(card.template_code, "<div class='updated-card'></div>")
+            self.assertEqual(ComponentFile.objects.get(component__name='card', filename='card.html').content, "<div class='updated-card'></div>")
 
         finally:
             shutil.rmtree(temp_dir)

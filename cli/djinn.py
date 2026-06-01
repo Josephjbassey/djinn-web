@@ -2,7 +2,6 @@ import argparse
 import os
 import requests
 import sys
-import json
 
 DEFAULT_BASE_URL = "http://localhost:8000/api"
 
@@ -21,25 +20,22 @@ def fetch_component_detail(component_id, api_url):
 def install_component(component, with_logic=True, target_dir="components/ui"):
     os.makedirs(target_dir, exist_ok=True)
 
-    # Write template
     template_path = os.path.join(target_dir, f"{component['slug']}.html")
-    with open(template_path, "w") as f:
+    with open(template_path, "w", encoding='utf-8') as f:
         f.write(component['template_code'])
     print(f"  ✔ Created {template_path}")
 
-    # Write logic
     if with_logic and component.get('logic_code'):
         logic_path = os.path.join(target_dir, f"{component['slug']}.py")
-        with open(logic_path, "w") as f:
+        with open(logic_path, "w", encoding='utf-8') as f:
             f.write(component['logic_code'])
         print(f"  ✔ Created {logic_path}")
 
     return True
 
-def add_component(component_slug, api_url, with_logic=True, force=False):
+def add_component(component_slug, api_url, with_logic=True):
     print(f"⠋ Fetching {component_slug} from registry...")
     try:
-        # First try the V1 Registry API
         v1_url = api_url_for(api_url, f"v1/registry/{component_slug}/")
         try:
             response = requests.get(v1_url, timeout=10)
@@ -49,15 +45,16 @@ def add_component(component_slug, api_url, with_logic=True, force=False):
                 os.makedirs("components/ui", exist_ok=True)
                 for file in data.get('files', []):
                     fpath = os.path.join("components/ui", file['filename'])
-                    with open(fpath, "w") as f:
+                    with open(fpath, "w", encoding='utf-8') as f:
                         f.write(file['content'])
                     print(f"  ✔ Created {fpath}")
                 print(f"\n✔ Component {component_slug} successfully installed.")
                 return
-        except:
-            pass
+        except (requests.exceptions.RequestException, ValueError) as e:
+            print(f"ℹ V1 Registry API failed for {component_slug}: {e}. Falling back to standard API...")
+        except (KeyboardInterrupt, SystemExit):
+            raise
 
-        # Fallback to standard components API
         response = requests.get(api_url_for(api_url, "components/"), timeout=10)
         response.raise_for_status()
         components = response.json()
@@ -78,7 +75,7 @@ def add_component(component_slug, api_url, with_logic=True, force=False):
 def list_components(api_url):
     print("⠋ Fetching registry...")
     try:
-        response = requests.get(api_url_for(api_url, "categories/"))
+        response = requests.get(api_url_for(api_url, "categories/"), timeout=10)
         response.raise_for_status()
         categories = response.json()
 
@@ -95,15 +92,12 @@ def main():
     parser.add_argument("--api-url", help="Override the default Djinn API URL")
     subparsers = parser.add_subparsers(dest="command")
 
-    # Add
     add_parser = subparsers.add_parser("add", help="Add a component")
     add_parser.add_argument("component", help="Slug of the component")
     add_parser.add_argument("--no-logic", action="store_true", help="Skip python logic")
 
-    # List
     subparsers.add_parser("list", help="List components")
 
-    # Update
     subparsers.add_parser("update", help="Update component")
     diff_parser = subparsers.add_parser("diff", help="Diff component")
     diff_parser.add_argument("component")

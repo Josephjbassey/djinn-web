@@ -1,30 +1,44 @@
+import requests
 import subprocess
 import os
-import requests
-import time
+import shutil
 
-def test_cli_v1():
-    # Ensure server is running
+def test():
+    print("Checking if server is running...")
     try:
-        requests.get("http://localhost:8000/api/v1/registry/button/")
-    except:
-        print("Server not running. Please start it.")
+        requests.get("http://localhost:8000/api/v1/registry/button/", timeout=5)
+    except requests.exceptions.RequestException as e:
+        print(f"✖ Error: Server not running or unreachable: {e}")
         return
+    except KeyboardInterrupt:
+        raise
 
-    # Run CLI
-    env = os.environ.copy()
-    env["DJINN_API_URL"] = "http://localhost:8000/api"
+    print("Running CLI list...")
+    res = subprocess.run(["python3", "cli/djinn.py", "list"], capture_output=True, text=True)
+    if res.returncode != 0:
+        print(f"✖ CLI list failed:\n{res.stderr}")
+        return
+    print(res.stdout)
 
-    print("Testing 'djinn list'...")
-    subprocess.run(["python3", "cli/djinn.py", "list"], env=env)
-
-    print("\nTesting 'djinn add button'...")
-    subprocess.run(["python3", "cli/djinn.py", "add", "button"], env=env)
+    print("Running CLI add button...")
+    res = subprocess.run(["python3", "cli/djinn.py", "add", "button"], capture_output=True, text=True)
+    if res.returncode != 0:
+        print(f"✖ CLI add failed:\n{res.stderr}")
+        return
+    print(res.stdout)
 
     if os.path.exists("components/ui/button.html"):
-        print("\nSUCCESS: button.html created")
+        print("✔ Verification successful: button.html created")
+        os.remove("components/ui/button.html")
+        if os.path.exists("components/ui/button.py"):
+            os.remove("components/ui/button.py")
+        # Cleanup empty dirs
+        try:
+            os.removedirs("components/ui")
+        except OSError:
+            pass
     else:
-        print("\nFAILURE: button.html missing")
+        print("✖ Verification failed: button.html not found")
 
 if __name__ == "__main__":
-    test_cli_v1()
+    test()

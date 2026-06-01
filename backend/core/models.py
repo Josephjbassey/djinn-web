@@ -44,9 +44,9 @@ class Component(models.Model):
         return f"{self.category.name} / {self.name}"
 
 class ComponentRegistry(models.Model):
-    name = models.CharField(max_length=100, unique=True, db_index=True) # e.g., "button"
-    category = models.CharField(max_length=100) # e.g., "actions", "feedback"
-    dependencies = models.JSONField(default=list) # e.g., ["alpinejs", "tailwind"]
+    name = models.CharField(max_length=100, unique=True)
+    category = models.CharField(max_length=100)
+    dependencies = models.JSONField(default=list)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -58,8 +58,8 @@ class ComponentRegistry(models.Model):
 
 class ComponentFile(models.Model):
     component = models.ForeignKey(ComponentRegistry, related_name="files", on_delete=models.CASCADE)
-    filename = models.CharField(max_length=255) # e.g., "button.html"
-    content = models.TextField() # raw boilerplate or compiled template strings
+    filename = models.CharField(max_length=255)
+    content = models.TextField()
 
     def __str__(self):
         return f"{self.component.name} / {self.filename}"
