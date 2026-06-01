@@ -1,15 +1,19 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import * as Tabs from "@radix-ui/react-tabs";
 import { cn } from "@/lib/utils";
 import { Terminal, FileJson, Code, Sparkles } from "lucide-react";
+import { Component } from "@/types";
 
 interface CodeDrawerProps {
-  component: any;
+  component: Component | null;
 }
 
 export const CodeDrawer: React.FC<CodeDrawerProps> = ({ component }) => {
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [prompt, setPrompt] = useState("");
+
   if (!component) {
     return (
       <div className="flex h-full items-center justify-center text-muted-foreground text-sm">
@@ -17,6 +21,16 @@ export const CodeDrawer: React.FC<CodeDrawerProps> = ({ component }) => {
       </div>
     );
   }
+
+  const handleGenerate = () => {
+    if (!prompt) return;
+    setIsGenerating(true);
+    // Simulate async generation
+    setTimeout(() => {
+      setIsGenerating(false);
+      setPrompt("");
+    }, 2000);
+  };
 
   return (
     <Tabs.Root defaultValue="template" className="flex flex-col h-full">
@@ -61,17 +75,30 @@ export const CodeDrawer: React.FC<CodeDrawerProps> = ({ component }) => {
         <Tabs.Content value="python" className="whitespace-pre text-purple-300 outline-none">
           {component.logic_code}
         </Tabs.Content>
-        <Tabs.Content value="ai" className="outline-none">
+        <Tabs.Content value="ai" className="outline-none h-full">
           <div className="flex flex-col gap-4 h-full">
             <p className="text-muted-foreground italic">Describe how you want to modify this component...</p>
             <div className="flex gap-2">
                 <input
                     type="text"
+                    value={prompt}
+                    onChange={(e) => setPrompt(e.target.value)}
                     placeholder="e.g. 'Add a loading state variant' or 'Change default padding'"
-                    className="flex-1 bg-background border border-border rounded-md px-3 py-1.5 focus:outline-none focus:ring-1 focus:ring-accent"
+                    className="flex-1 bg-background border border-border rounded-md px-3 py-1.5 focus:outline-hidden focus:ring-1 focus:ring-accent"
                 />
-                <button className="px-4 py-1.5 bg-accent text-white rounded-md text-xs font-bold">Generate</button>
+                <button
+                  onClick={handleGenerate}
+                  disabled={isGenerating || !prompt}
+                  className="px-4 py-1.5 bg-accent text-white rounded-md text-xs font-bold hover:bg-accent/90 transition-colors disabled:opacity-50"
+                >
+                  {isGenerating ? "Generating..." : "Generate"}
+                </button>
             </div>
+            {isGenerating && (
+                <div className="flex items-center gap-2 text-accent text-xs font-bold animate-pulse">
+                    <Sparkles size={14} /> Refactoring component code...
+                </div>
+            )}
           </div>
         </Tabs.Content>
       </div>
