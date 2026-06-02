@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load component_tags %}
+{% block content %}
+{% component "hero" badge="THE MONOLITH IS HERE" title_line1="OWN YOUR UI." title_line2="BUILT FOR DJANGO." description="Consolidated, High Performance, Dogfooded." %}
+    {% fill "terminal" %}
+    <div class="w-full max-w-2xl mx-auto p-8 bg-slate-950 rounded-xl border border-white/5 font-mono text-sm text-emerald-400">
+        $ djinn add button<br/>
+        ✔ Created components/ui/button.html
+    </div>
+    {% endfill %}
+{% endcomponent %}
+{% endblock %}
