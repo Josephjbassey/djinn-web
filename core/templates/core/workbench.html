@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="p-12">
+    <h1 class="text-4xl font-black uppercase mb-8">Workbench</h1>
+    <div class="grid grid-cols-4 gap-8">
+        <aside class="col-span-1 space-y-4">
+            {% for cat in categories %}
+                <h3 class="text-[10px] font-black text-slate-500 uppercase">{{ cat.name }}</h3>
+                {% for comp in cat.components.all %}
+                    <a href="?id={{ comp.id }}" class="block text-sm font-bold text-slate-400 hover:text-white">{{ comp.name }}</a>
+                {% endfor %}
+            {% endfor %}
+        </aside>
+        <main class="col-span-3 bg-slate-900 rounded-xl p-12 flex items-center justify-center">
+            {% if component %}
+                <iframe src="/preview/?id={{ component.id }}" class="w-full h-64 border-none"></iframe>
+            {% else %}
+                <p class="text-slate-500">Select a component</p>
+            {% endif %}
+        </main>
+    </div>
+</div>
+{% endblock %}
