@@ -3,9 +3,17 @@ from pathlib import Path
 import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-SECRET_KEY = 'django-insecure-monolith-key-12345'
-DEBUG = True
-ALLOWED_HOSTS = ['*']
+
+# Security Settings
+SECRET_KEY = os.environ.get('SECRET_KEY')
+if not SECRET_KEY:
+    if os.environ.get('DJANGO_ENV') == 'production':
+        raise ValueError("SECRET_KEY must be set in production environment")
+    SECRET_KEY = 'django-insecure-monolith-key-12345'  # Development fallback
+
+DEBUG = os.environ.get('DJANGO_DEBUG', 'false').lower() == 'true'
+
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',') if os.environ.get('ALLOWED_HOSTS') else []
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -87,7 +95,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_ALL_ORIGINS = os.environ.get('CORS_ALLOW_ALL_ORIGINS', 'false').lower() == 'true'
 REGISTRY_ROOT = os.path.join(BASE_DIR, 'registry_src', 'components')
 
 COMPONENTS = {
