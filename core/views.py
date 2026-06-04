@@ -1,36 +1,39 @@
+import nh3
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
-from django.template import Template, Context
-from django.utils.html import escape
 from registry.models import Category, Component
-import bleach
 
 def sanitize_html(html):
-    """Sanitize HTML to allow only safe tags and attributes."""
-    allowed_tags = ['div', 'span', 'p', 'a', 'button', 'input', 'label', 'ul', 'ol', 'li', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'strong', 'em', 'br', 'hr', 'table', 'thead', 'tbody', 'tr', 'th', 'td']
-    allowed_attrs = {
-        '*': ['class', 'id'],
-        'a': ['href', 'title'],
-        'button': ['type'],
-        'input': ['type', 'name', 'value', 'placeholder'],
-    }
-    return bleach.clean(html, tags=allowed_tags, attributes=allowed_attrs, strip=True)
+    return nh3.clean(html)
 
-def landing(request): return render(request, 'core/landing.html')
-def registry_browser(request): return render(request, 'core/registry_browser.html', {'categories': Category.objects.all()})
-def docs(request): return render(request, 'core/docs.html')
+def landing(request):
+    return render(request, 'core/landing.html')
+
+def registry_browser(request):
+    categories = Category.objects.prefetch_related('components').all()
+    return render(request, 'core/registry_browser.html', {'categories': categories})
+
+def docs(request):
+    return render(request, 'core/docs.html')
+
 def workbench(request):
-    cid = request.GET.get('id')
-    comp = Component.objects.filter(id=cid).first() if cid else None
-    return render(request, 'core/workbench.html', {'component': comp, 'categories': Category.objects.all().prefetch_related('components')})
+    component_id = request.GET.get('id')
+    component = None
+    if component_id:
+        try: component = Component.objects.get(id=component_id)
+        except Component.DoesNotExist: pass
+    categories = Category.objects.prefetch_related('components').all()
+    return render(request, 'core/workbench.html', {'component': component, 'categories': categories})
+
 def preview(request):
-    comp = get_object_or_404(Component, id=request.GET.get('id'))
-    sanitized_template = sanitize_html(comp.template_code)
-    iframe_content = f'<iframe sandbox="allow-forms allow-popups" srcdoc="{escape(sanitized_template)}" style="width:100%;height:100vh;border:none;"></iframe>'
-    html_content = f"<html><head><link rel='stylesheet' href='/static/css/output.css'></head><body>{iframe_content}</body></html>"
-    response = HttpResponse(html_content)
-    response['Content-Security-Policy'] = "default-src 'self'; style-src 'self' 'unsafe-inline'; frame-src 'self'"
+    component = get_object_or_404(Component, id=request.GET.get('id'))
+    sanitized_template = sanitize_html(component.template_code)
+    html = f"""<!DOCTYPE html><html><head><title>Preview</title><style>body,html{{margin:0;padding:0;height:100%;overflow:hidden;}}iframe{{width:100%;height:100%;border:none;}}</style></head>
+    <body><iframe sandbox="allow-forms allow-popups" srcdoc='<!DOCTYPE html><html><head><link rel="stylesheet" href="/static/css/output.css"></head><body>{sanitized_template}</body></html>'></iframe></body></html>"""
+    response = HttpResponse(html)
+    response["Content-Security-Policy"] = "default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'none';"
     return response
+
 def forge(request): return render(request, 'core/forge.html')
 def sync_dashboard(request): return render(request, 'core/sync_dashboard.html')
 def save_component_settings(request): return HttpResponse("Saved")

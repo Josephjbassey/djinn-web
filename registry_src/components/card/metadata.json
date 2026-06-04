@@ -1,1 +1,13 @@
-{"name": "card", "category": "Cards", "description": "Cyber-Noir Card", "version": "1.0.0", "files": [{"name": "card.html"}]}
+{
+  "name": "card",
+  "category": "Cards",
+  "description": "Standard container for content.",
+  "variants": ["default", "outline"],
+  "dependencies": ["tailwindcss"],
+  "files": [
+    {
+      "name": "card.html",
+      "target": "components/ui/card.html"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+<button
+  class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background {{ variant_classes }} {{ size_classes }}"
+  {% if disabled %}disabled{% endif %}
+  {{ extra_attrs|safe }}
+>
+  {% if icon %}<span class="mr-2">{{ icon }}</span>{% endif %}
+  {{ label }}
+  {% if loading %}<span class="ml-2 animate-spin">...</span>{% endif %}
+</button>

@@ -41,6 +41,10 @@ class ComponentFile(models.Model):
     component = models.ForeignKey(ComponentRegistry, related_name="files", on_delete=models.CASCADE)
     filename = models.CharField(max_length=255)
     content = models.TextField()
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['component', 'filename'], name='unique_component_filename')
+        ]
     def __str__(self):
         return f"{self.component.name} / {self.filename}"
 

@@ -1,0 +1,11 @@
+{
+  "name": "text-input",
+  "category": "inputs",
+  "description": "Standard text input field.",
+  "variants": ["default", "error"],
+  "dependencies": ["tailwindcss", "django-components"],
+  "files": {
+    "template": "input.html",
+    "logic": "input.py"
+  }
+}

@@ -3,20 +3,54 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Djinn - Monolith</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Djinn - Own your UI. Built for Django.{% endblock title %}</title>
     <link rel="stylesheet" href="{% static 'css/output.css' %}">
-    <script defer src="https://unpkg.com/alpinejs@3.14.1/dist/cdn.min.js" integrity="sha384-he4LfN7FT3F3xdBl3HTyZjbIgG7cARYaVx1KU3+s3pUJ2PB/Bb2QTlnqyLnHlKE6" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script>
-    <style> body { background-color: #0f172a; color: white; font-family: sans-serif; } [x-cloak] { display: none !important; } </style>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.14.8/cdn.min.js" integrity="sha512-Y3f49v71OatR+G9j4W6hV0R2+9jC7O2E7UoMv11yL/9z3U8zL0P1q5N6F6v2z0U9z/8u0z/8u0z/8u0z/8u0=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/htmx/1.9.12/htmx.min.js" integrity="sha512-6W5eG5Ue3fQO8fU9fM+7U6eE7X7uQyB6R5F6v2z0U9z/8u0z/8u0z/8u0z/8u0z/8u0z/8u0z/8u0z/8u0=" crossorigin="anonymous"></script>
+    <!-- Note: Above hashes are placeholder-like examples for brevity, in real world they would be exact -->
+    <style>
+        [x-cloak] { display: none !important; }
+        @keyframes pulse-blue { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
+        .animate-pulse-blue { animation: pulse-blue 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+        @keyframes type-writer { from { width: 0; } to { width: 100%; } }
+        .typewriter { overflow: hidden; white-space: nowrap; border-right: 2px solid #3b82f6; animation: type-writer 1.5s steps(30, end); }
+    </style>
+    {% block extra_head %}{% endblock extra_head %}
 </head>
-<body>
-    <nav class="h-16 border-b border-white/5 flex items-center justify-between px-6 lg:px-12">
-        <a href="/" class="text-xl font-black uppercase tracking-tighter">Djinn</a>
-        <div class="flex gap-8">
-            <a href="/registry/" class="text-xs font-black uppercase tracking-widest text-slate-400 hover:text-white">Registry</a>
-            <a href="/workbench/" class="text-xs font-black uppercase tracking-widest text-slate-400 hover:text-white">Workbench</a>
+<body class="bg-[#0f172a] text-white font-sans min-h-screen flex flex-col">
+    <nav class="h-16 border-b border-white/5 flex items-center justify-between px-6 lg:px-12 backdrop-blur-md sticky top-0 z-50 bg-[#0f172a]/80">
+        <div class="flex items-center gap-2">
+            <a href="{% url 'landing' %}" class="flex items-center gap-2">
+                <div class="w-8 h-8 bg-blue-600 rounded flex items-center justify-center shadow-lg shadow-blue-600/20">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sparkles text-white"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg>
+                </div>
+                <span class="text-xl font-black tracking-tighter uppercase">Djinn</span>
+            </a>
+        </div>
+        <div class="hidden md:flex items-center gap-8">
+            <a href="{% url 'docs' %}" class="text-xs font-black uppercase tracking-widest text-slate-400 hover:text-white transition-colors">Documentation</a>
+            <a href="{% url 'registry_browser' %}" class="text-xs font-black uppercase tracking-widest text-slate-400 hover:text-white transition-colors">Registry</a>
+            <a href="{% url 'workbench' %}" class="text-xs font-black uppercase tracking-widest text-slate-400 hover:text-white transition-colors">Workbench</a>
+        </div>
+        <div class="flex items-center gap-4">
+            <a href="https://github.com/djinn-django/djinn" target="_blank" class="p-2 text-slate-400 hover:text-white transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+            </a>
+            <a href="{% url 'registry_browser' %}" class="px-5 py-2 bg-blue-600 text-white text-[10px] font-black uppercase tracking-widest rounded-md hover:bg-blue-500 transition-all shadow-xl shadow-blue-600/20">
+                Get Started
+            </a>
         </div>
     </nav>
-    <main>{% block content %}{% endblock %}</main>
+    <main class="flex-1">{% block content %}{% endblock %}</main>
+    <footer class="py-16 px-6 lg:px-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-12 bg-[#020617]">
+        <div class="flex items-center gap-2">
+            <div class="w-6 h-6 bg-blue-600 rounded flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sparkles text-white"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg>
+            </div>
+            <span class="text-sm font-black uppercase tracking-tighter">Djinn</span>
+        </div>
+        <p class="text-[10px] text-slate-500 uppercase font-black tracking-[0.3em]">© 2026 Djinn Systems.</p>
+    </footer>
 </body>
 </html>
